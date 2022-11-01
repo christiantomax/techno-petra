@@ -1,0 +1,430 @@
+<section>
+  <b-skeleton
+    v-if="getMasterSliderFrontendList.length <= 0"
+    width="100vw"
+    height="100vh"
+  ></b-skeleton>
+  <div class="slidercontainer">
+    <flickity
+      v-if="getMasterSliderFrontendList.length > 0"
+      ref="flickity"
+      :options="flickityOptions"
+      style="overflow: hidden;"
+    >
+      <b-container
+        v-for="(v,k) in getMasterSliderFrontendList"
+        :key="`slider-${v.id}`"
+        class="homebanner"
+        :style="{ backgroundImage: `url( ${v.mh_slider.is_photo == 0 ? require('@/assets/img/slide1.jpg') : v.mh_slider.photo } )` }"
+      >
+        <video
+          v-if="v.mh_slider.is_photo == 0"
+          autoplay
+          muted
+          loop
+          id="homevideo"
+        >
+          <source :src="v.mh_slider.photo" type="video/mp4" />
+        </video>
+        <b-row>
+          <b-col sm="12" md="8">
+            <h1 class="text-light headeranimate" v-html="v.title"></h1>
+            <p
+              class="text-light mt10 mb30 headeranimate"
+              style="animation-delay: .4s;"
+              v-html="v.description"
+            ></p>
+            <router-link
+              v-if="(v.mh_slider.link != null && v.mh_slider.link != '')"
+              tag="button"
+              :to="v.mh_slider.link"
+              class="btn text-light headeranimate"
+              style="animation-delay: .6s;"
+              >{{ $t('frontend.buttons.learnmore') }}
+              <b-icon icon="chevron-right"></b-icon
+            ></router-link>
+          </b-col>
+        </b-row>
+      </b-container>
+    </flickity>
+    <!--  <div class='bullets'>
+            <div v-for="(v,k) in getMasterSliderFrontendList" class='bullet' @click='select(k)' :key='k'></div>
+        </div> -->
+    <b-icon
+      icon="chevron-left"
+      @click="previous()"
+      class="prevnextbtn prev"
+      v-if="getMasterSliderFrontendList.length > 1"
+    ></b-icon>
+    <b-icon
+      icon="chevron-right"
+      @click="next()"
+      class="prevnextbtn next"
+      v-if="getMasterSliderFrontendList.length > 1"
+    ></b-icon>
+  </div>
+
+  <b-container
+    class="fullwidth petrainnumber"
+    v-animate-onscroll="'animated fadeIn'"
+    style="background:#273656;animation-delay: .2s;padding: 60px 0;"
+  >
+    <b-row class="mb30 text-center">
+      <b-col>
+        <h1 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.heading') }}
+        </h1>
+      </b-col>
+    </b-row>
+
+    <b-row class="infographic" style="border-bottom: 1px solid #e6e6e6;">
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">1961</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.founded') }}
+        </h6>
+      </b-col>
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">9000+</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.mahasiswabelajar') }}
+        </h6>
+      </b-col>
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">45000+</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.alumni') }}
+        </h6>
+      </b-col>
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">125+</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.localpartners') }}
+        </h6>
+      </b-col>
+    </b-row>
+
+    <b-row class="infographic">
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">100+</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.intpartners') }}
+        </h6>
+      </b-col>
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">5</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.fakultas') }}
+        </h6>
+      </b-col>
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">22</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.programstudi') }}
+        </h6>
+      </b-col>
+      <b-col class="info" lg="3" sm="6">
+        <h2 class="text-light">A</h2>
+        <h6 class="text-light">
+          {{ $t('frontend.sekilaspetra.petrainnumber.akreditasi') }}
+        </h6>
+      </b-col>
+    </b-row>
+    <b-row class="mt30 text-center">
+      <b-col>
+        <router-link tag="button" to="/about" class="btn text-light"
+          >{{ $t('frontend.buttons.bacaselengkapnya') }}</router-link
+        >
+      </b-col>
+    </b-row>
+  </b-container>
+
+  <!--     <b-container id='faculties' class='faculties fullwidth' style='padding-top: 10% !important;'>
+        <b-row style='margin-bottom: 20px;'>
+            <b-col>
+                <div class='animation-boxed' v-animate-onscroll="'animated fadeInUp'" style='animation-delay: 0s;'>
+                    <h1 >Discover Our<br>Major Studies</h1>
+                </div>
+
+                <div class='animation-boxed' v-animate-onscroll="'animated fadeInUp'" style='animation-delay:.1s'>
+                    <p class=' mt10 mb30' style='max-width: 550px;'>
+                        Apakah kamu sudah membidik jurusan tertentu, atau ingin mengasah minat yang baru?
+                        7 fakultas Universitas Kristen Petra menawarkan 34 program studi dalam bidang humaniora,
+                        ekonomi, teknik, seni, informasi dan teknologi, serta pendidikan yang dikalibrasi sesuai dengan
+                        tuntutan industri yang terus berubah
+                    </p>
+                </div>
+            </b-col>
+        </b-row>
+
+        <b-row v-animate-onscroll="'animated fadeIn'" style='animation-delay:.4s'>
+            <b-col>
+                  <flickity ref="flickity" :options="flickityOptions" id='carousel-faculty'>
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/pariwisata.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Pariwisata</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/IBM.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Bisnis dan Ekonomi</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/managemen.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Arsitek</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/magister.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Bahasa and Sastra</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/SIB.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Bahasa and Sastra</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/magister-arsitek.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Bahasa and Sastra</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+                    <div class="carousel-cell" :style='{"background": `url( ${require("@/assets/img/bahasa.jpg")} )`}'>
+                        <div class='carousel-content'>
+                            <div class='animation-boxed'>
+                                <h6 class='text-light mb15'>Bahasa and Sastra</h6>
+                            </div>
+                            <div class='animation-boxed'>
+                                <h3 class='text-light mb30'>Magical Memories<br>Bespoke experiences</h3>
+                            </div>
+                            <button class='btn text-light'>Learn More <b-icon icon='chevron-right'></b-icon></button>
+                        </div>
+                    </div>
+
+                  </flickity>
+            </b-col>
+        </b-row>
+    </b-container> -->
+
+  <!--     <b-container id='about'>
+        <b-row>
+            <b-col sm='12' lg='6' style='padding:0'>
+               <div class='image' style='background:#696969;height:50vw;max-height: 750px;' v-animate-onscroll="'animated fadeIn'">
+
+               </div>
+            </b-col>
+            <b-col sm='12' lg='6'  style='padding:5%;padding-right: 0;'>
+                <div class='animation-boxed' v-animate-onscroll="'animated fadeIn'" style='animation-delay: .2s;'>
+                    <h1 >Universitas Kristen Petra<br>At Glance</h1>
+                </div>
+
+                <p class=' mt10 mb20'  v-animate-onscroll="'animated fadeIn'" style='animation-delay: .2s;'>Universitas Kristen Petra adalah tempat di mana pemimpin-pemimpin era digital dibentuk dan
+                    ditempa berlandaskan nilai-nilai kristiani.
+                </p>
+
+                <p class=' mt10 mb30'  v-animate-onscroll="'animated fadeIn'" style='animation-delay: .2s;'>Kami mengundangmu untuk menimba ilmu di
+                    universitas yang peduli dan global, untuk belajar di bawah staf pengajar yang teruji dan
+                    bergabung dengan para mahasiswa dengan visi yang sama—membawa dampak bagi dunia.
+                </p>
+                <button class='btn ' v-animate-onscroll="'animated fadeIn'" style='animation-delay: .2s;'>Read More <b-icon icon='chevron-right'></b-icon></button>
+            </b-col>
+
+        </b-row>
+    </b-container> -->
+
+  <!--     <b-container id='curiculum' v-animate-onscroll="'animated fadeIn'" style='animation-delay: .2s;'>
+        <b-row style='width:100%'>
+            <b-col lg='8' class='faculty d-none d-md-block'>
+
+            </b-col>
+            <b-col sm='12' lg='4' class='customblock'  v-animate-onscroll="'animated fadeIn'" style='animation-delay: 1s;'>
+                <div class='animation-boxed '>
+                    <h1 class=' mb15 '>Enrollment Opens Today</h1>
+                </div>
+                <div class='animation-boxed'>
+                    <p class=' mt10 mb30'>Build on strengths. Develop talents. Try something new.
+                        With specialized programs and a host of extracurriculars,
+                        there’s no limit to what your child can do at Fairmont.
+                    </p>
+                </div>
+                <button class='btn '>Enroll Now <b-icon icon='chevron-right'></b-icon></button>
+            </b-col>
+        </b-row>
+    </b-container> -->
+
+  <b-container
+    id="admission"
+    v-animate-onscroll="'animated fadeIn'"
+    style="animation-delay: .2s;"
+  >
+    <b-row style="align-items:center">
+      <b-col sm="12" lg="6" style="padding:5%">
+        <img src="~@/assets/img/sketch.jpg" style="width:100%" />
+      </b-col>
+      <b-col sm="12" lg="6">
+        <div class="animation-boxed">
+          <h1>{{ $t('frontend.home.headingbangun') }}</h1>
+        </div>
+
+        <p class=" mt10 mb15">
+          {{ $t('frontend.home.descbangun') }}
+        </p>
+
+        <router-link
+          tag="button"
+          to="/admission"
+          class="btn mt30"
+          style="display: block;"
+          >{{ $t('frontend.buttons.daftarsekarang') }}<b-icon
+            icon="chevron-right"
+          ></b-icon
+        ></router-link>
+
+        <router-link
+          tag="button"
+          to="/admission"
+          class="btn mt30"
+          style="display: block;"
+          >{{ $t('frontend.buttons.kesempatanbeasiswa') }}
+          <b-icon icon="chevron-right"></b-icon
+        ></router-link>
+      </b-col>
+    </b-row>
+  </b-container>
+
+  <b-container
+    id="campuslife"
+    v-animate-onscroll="'animated fadeIn'"
+    style="animation-delay: .2s;"
+  >
+    <b-row>
+      <b-col>
+        <div class="campuslifewrapper">
+          <h5 @click="campusLife(0)" :class='{"active":campusLifeSelect==0}'>
+            {{ $t('frontend.home.headingcampuslife') }}
+          </h5>
+          <h5 @click="campusLife(1)" :class='{"active":campusLifeSelect==1}'>
+            {{ $t('frontend.home.subheadingfacilities') }}
+          </h5>
+          <h5 @click="campusLife(2)" :class='{"active":campusLifeSelect==2}'>
+            {{ $t('frontend.home.subheadingactivities') }}
+          </h5>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row class="contentfacilities" :class='{"active":campusLifeSelect==0}'>
+      <b-col sm="12" lg="7">
+        <div class="animation-boxed">
+          <h1>{{ $t('frontend.home.headingcampuslife') }}</h1>
+        </div>
+
+        <p class=" mt10 mb15">{{ $t('frontend.home.desccampuslife') }}</p>
+
+        <router-link
+          tag="button"
+          to="/campus-life"
+          class="btn mt30"
+          style="display: block;"
+          >{{ $t('frontend.buttons.bacaselengkapnya') }}
+          <b-icon icon="chevron-right"></b-icon
+        ></router-link>
+      </b-col>
+    </b-row>
+    <b-row class="contentfacilities" :class='{"active":campusLifeSelect==1}'>
+      <b-col sm="12" lg="6">
+        <div class="animation-boxed">
+          <h1>{{ $t('frontend.home.headingfacilities') }}</h1>
+        </div>
+
+        <p class=" mt10 mb15">{{ $t('frontend.home.descfacilities') }}</p>
+
+        <router-link
+          tag="button"
+          to="/facilities"
+          class="btn mt30"
+          style="display: block;"
+          >{{ $t('frontend.buttons.bacaselengkapnya') }}
+          <b-icon icon="chevron-right"></b-icon
+        ></router-link>
+      </b-col>
+      <b-col sm="12" lg="6" style="padding:5%"> </b-col>
+    </b-row>
+    <b-row class="contentfacilities" :class='{"active":campusLifeSelect==2}'>
+      <b-col sm="12" lg="6">
+        <div class="animation-boxed">
+          <h1>{{ $t('frontend.home.headingactivities') }}</h1>
+        </div>
+
+        <p class=" mt10 mb15">
+          {{ $t('frontend.home.descactivities') }}
+        </p>
+
+        <router-link
+          tag="button"
+          to="/activities"
+          class="btn mt30"
+          style="display: block;"
+          >{{ $t('frontend.buttons.bacaselengkapnya') }}
+          <b-icon icon="chevron-right"></b-icon
+        ></router-link>
+      </b-col>
+      <b-col sm="12" lg="6" style="padding:5%"> </b-col>
+    </b-row>
+    <b-row class="backgroundwrapper">
+      <b-col>
+        <div
+          :class="{background:true,active:campusLifeSelect==0}"
+          :style='{"background": `url( ${require("@/assets/img/gedungQ.jpg")} )`}'
+        ></div>
+        <div
+          :class="{background:true,active:campusLifeSelect==1}"
+          :style='{"background": `url( ${require("@/assets/img/banner-10.jpg")} )`}'
+        ></div>
+        <div
+          :class="{background:true,active:campusLifeSelect==2}"
+          :style='{"background": `url( ${require("@/assets/img/event.jpg")} )`}'
+        ></div>
+      </b-col>
+    </b-row>
+  </b-container>
+</section>

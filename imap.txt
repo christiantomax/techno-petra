@@ -1,0 +1,24 @@
+public static function cekEmail($email,$pass){
+	$tmp=explode("@",$email);
+	$user=$tmp[0];
+	$domain=$tmp[1];//john.petra.ac.id
+
+
+	$imap = false;
+	$timeout = 15;
+
+	$fp = fsockopen($domain, $port = 110, $errno, $errstr, $timeout);
+	$errstr = fgets($fp);
+	if(substr($errstr, 0, 1) == '+') {
+		fputs($fp, "USER ".$user."\n");
+		$errstr = fgets($fp);
+		if(substr($errstr, 0, 1) == '+') {
+			fputs($fp, "PASS ".$pass."\n");
+			$errstr = fgets($fp);
+			if(substr($errstr, 0, 1) == '+') {
+				$imap = true;
+			}
+		}
+	}
+	return $imap;
+}
