@@ -4,21 +4,70 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Form Layouts | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <title>Account Settings | CORK - Multipurpose Bootstrap Dashboard Template </title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
-    <link href="{{ url('layouts/vertical-light-menu/css/light') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('layouts/vertical-light-menu/css/dark') }}" rel="stylesheet" type="text/css" />
-    <script src="../layouts/vertical-light-menu/loader.js"></script>
+    <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url('layouts/vertical-light-menu/loader.js') }}"></script>
+
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ url('src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/light/plugins.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/src/tagify/tagify.css') }}">
     <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/tagify/custom-tagify.css') }}">
+
     <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/tagify/custom-tagify.css') }}">
+
+    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ url('src/plugins/css/light/editors/markdown/simplemde.min.css') }}">
+
+    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ url('src/plugins/css/dark/editors/markdown/simplemde.min.css') }}">
+
+    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/light/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/filepond.min.css') }}">
+    <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/FilePondPluginImagePreview.min.css') }}">
+    <link href="{{ url('src/plugins/src/notification/snackbar/snackbar.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ url('src/plugins/src/sweetalerts2/sweetalerts2.css') }}">
+
+    <link href="{{ url('src/plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/assets/css/light/components/tabs.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/light/elements/alert.css') }}">
+
+    <link href="{{ url('src/plugins/css/light/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/light/notification/snackbar/custom-snackbar.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/light/forms/switches.css') }}">
+    <link href="{{ url('src/assets/css/light/components/list-group.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url('src/assets/css/light/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
+
+
+
+    <link href="{{ url('src/plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/assets/css/dark/components/tabs.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/dark/elements/alert.css') }}">
+
+    <link href="{{ url('src/plugins/css/dark/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/dark/notification/snackbar/custom-snackbar.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/dark/forms/switches.css') }}">
+    <link href="{{ url('src/assets/css/dark/components/list-group.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url('src/assets/css/dark/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
+
+
+    <!--  END CUSTOM STYLE FILE  -->
 </head>
-<body class="layout-boxed" data-bs-spy="scroll" data-bs-target="#navSection" data-bs-offset="100">
+<body class=" layout-boxed">
 
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
@@ -656,8 +705,8 @@
                         </ul>
                     </li>
 
-                    <li class="menu active">
-                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <li class="menu">
+                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                                 <span>Forms</span>
@@ -666,14 +715,14 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled show" id="forms" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./form-bootstrap-basic.html"> Basic </a>
                             </li>
                             <li>
                                 <a href="./form-input-group-basic.html"> Input Group </a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="./form-layouts.html"> Layouts </a>
                             </li>
                             <li>
@@ -734,8 +783,8 @@
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>USER AND PAGES</span></div>
                     </li>
 
-                    <li class="menu">
-                        <a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu active">
+                        <a href="#users" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 <span>Users</span>
@@ -744,11 +793,11 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled show" id="users" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./user-profile.html"> Profile </a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="./user-account-settings.html"> Account Settings </a>
                             </li>
                         </ul>
@@ -911,83 +960,143 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            <div class="container">
-                <div class="container mw-100">
+            <div class="layout-px-spacing">
+
+                <div class="middle-content container-xxl p-0">
 
                     <!-- BREADCRUMB -->
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Form</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Layouts</li>
+                                <li class="breadcrumb-item"><a href="#">Users</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Account Settings</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
-                    <div class="row">
 
-                        <div id="flLoginForm" class="col-lg-12 layout-spacing">
-                            <div class="statbox widget box box-shadow">
-                                <div class="widget-header">
-                                    <div class="row">
-                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Gutters</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content widget-content-area">
-                                    <form class="row g-3">
-                                        <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="inputEmail4">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="inputPassword4" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="inputPassword4">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputAddress" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputAddress2" class="form-label">Address 2</label>
-                                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="inputCity" class="form-label">City</label>
-                                            <input type="text" class="form-control" id="inputCity">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="inputState" class="form-label">State</label>
-                                            <select id="inputState" class="form-select">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="inputZip" class="form-label">Zip</label>
-                                            <input type="text" class="form-control" id="inputZip">
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                <label class="form-check-label" for="gridCheck">
-                                                    Check me out
-                                                </label>
+                    <div class="account-settings-container layout-top-spacing">
+
+                        <div class="account-content">
+
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
+                                    <form class="section general-info">
+                                        <div class="info">
+                                            <h6 class="">General Information</h6>
+                                            <div class="row">
+                                                <div class="col-lg-11 mx-auto">
+                                                    <div class="row">
+                                                        <div class="col-xl-2 col-lg-12 col-md-4">
+                                                            <div class="profile-image  mt-4 pe-md-4">
+
+                                                                <!-- // The classic file input element we'll enhance
+                                                                // to a file pond, we moved the configuration
+                                                                // properties to JavaScript -->
+
+                                                                <div class="img-uploader-content">
+                                                                    <input type="file" class="filepond"
+                                                                        name="filepond" accept="image/png, image/jpeg, image/gif"/>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
+                                                            <div class="form">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="fullName">Team Name</label>
+                                                                            <input type="text" class="form-control mb-3" id="fullName" placeholder="Full Name" value="Jimmy Turner">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="profession">Nrp Leader</label>
+                                                                            <input type="text" class="form-control mb-3" id="profession" placeholder="Designer" value="Web Developer">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="country">Country</label>
+                                                                            <select class="form-select mb-3" id="country">
+                                                                                <option>All Countries</option>
+                                                                                <option selected>United States</option>
+                                                                                <option>India</option>
+                                                                                <option>Japan</option>
+                                                                                <option>China</option>
+                                                                                <option>Brazil</option>
+                                                                                <option>Norway</option>
+                                                                                <option>Canada</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="address">Address</label>
+                                                                            <input type="text" class="form-control mb-3" id="address" placeholder="Address" value="New York" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="location">Location</label>
+                                                                            <input type="text" class="form-control mb-3" id="location" placeholder="Location">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="phone">Phone</label>
+                                                                            <input type="text" class="form-control mb-3" id="phone" placeholder="Write your phone number here" value="+1 (530) 555-12121">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="email">Email</label>
+                                                                            <input type="text" class="form-control mb-3" id="email" placeholder="Write your email here" value="Jimmy@gmail.com">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="website1">Website</label>
+                                                                            <input type="text" class="form-control mb-3" id="website1" placeholder="Enter URL">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12 mt-1">
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="customCheck1">
+                                                                            <label class="form-check-label" for="customCheck1">Make this my default address</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12 mt-4">
+                                                                        <label for="tag" class="form-label">Category</label>
+                                                                        <label><button class="btn btn-secondary">Edit</button></label>
+                                                                        <input id="tag" name='tag' value='tag1, tag2 autofocus'>
+                                                                    </div>
+
+                                                                    <div class="col-12 mt-4">
+                                                                        <label for="member2" class="form-label">Member</label>
+                                                                        <textarea id="member2"></textarea>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-1">
+                                                                        <div class="form-group text-end">
+                                                                            <button class="btn btn-primary">Save</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-primary">Sign in</button>
-                                        </div>
                                     </form>
-
-                                    <div class="code-section-container">
-
-                                        <button class="btn toggle-code-snippet"><span>Code</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down toggle-code-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
-                                        <div class="code-section text-left">
-
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -995,7 +1104,20 @@
                     </div>
 
                 </div>
+
             </div>
+
+            <!--  BEGIN FOOTER  -->
+            <div class="footer-wrapper">
+                <div class="footer-section f-section-1">
+                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">DesignReset</a>, All rights reserved.</p>
+                </div>
+                <div class="footer-section f-section-2">
+                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+                </div>
+            </div>
+            <!--  END FOOTER  -->
+
         </div>
         <!--  END CONTENT AREA  -->
     </div>
@@ -1007,8 +1129,51 @@
     <script src="{{ url('src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/waves/waves.min.js') }}"></script>
     <script src="{{ url('layouts/vertical-light-menu/app.js') }}"></script>
-    <script src="{{ url('src/plugins/src/highlight/highlight.pack.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+    <script src="{{ url('src/plugins/src/filepond/filepond.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/notification/snackbar/snackbar.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/sweetalerts2/sweetalerts2.min.js') }}"></script>
+    <script src="{{ url('src/assets/js/users/account-settings.js') }}"></script>
+
     <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
+    <script src="{{ url('src/plugins/src/tagify/tagify.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/tagify/custom-tagify.js') }}"></script>
+    <!--  END CUSTOM SCRIPTS FILE  -->
+
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+    <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/editors/markdown/simplemde.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/editors/markdown/custom-markdown.js') }}"></script>
+
+    <script>
+        // The DOM element you wish to replace with Tagify
+        var input = document.querySelector('input[name=tag]');
+
+        // initialize Tagify on the above input node reference
+        new Tagify(input)
+
+        // Autosaving
+        new SimpleMDE({
+            element: document.getElementById("member2"),
+            spellChecker: false,
+            autosave: {
+                enabled: true,
+                unique_id: "member2",
+            },
+        });
+    </script>
+    <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 </html>

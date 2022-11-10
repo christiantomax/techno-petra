@@ -79,7 +79,7 @@ body.dark.layout-boxed #content > .container {
 }
 body.dark #content > .container > .container {
   padding: 0;
-  max-width: 64% !important;
+  max-width: 100% !important;
   margin-left: 0;
   padding: 0 0 !important;
 }

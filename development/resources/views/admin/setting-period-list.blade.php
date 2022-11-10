@@ -4,22 +4,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Form Layouts | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <title>DataTables Striped | CORK - Multipurpose Bootstrap Dashboard Template </title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
-    <link href="{{ url('layouts/vertical-light-menu/css/light') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('layouts/vertical-light-menu/css/dark') }}" rel="stylesheet" type="text/css" />
-    <script src="../layouts/vertical-light-menu/loader.js"></script>
+    <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url('layouts/vertical-light-menu/loader.js') }}"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ url('src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/light/plugins.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-</head>
-<body class="layout-boxed" data-bs-spy="scroll" data-bs-target="#navSection" data-bs-offset="100">
 
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/src/table/datatable/datatables.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/table/datatable/dt-global_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/table/datatable/dt-global_style.css') }}">
+    <!-- END PAGE LEVEL STYLES -->
+</head>
+<body class="layout-boxed">
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
@@ -49,14 +53,14 @@
 
                 <li class="nav-item dropdown language-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="../src/assets/img/1x1/us.svg" class="flag-width" alt="flag">
+                        <img src="{{ url('src/assets/img/1x1/us.svg') }}" class="flag-width" alt="flag">
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/us.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/tr.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Turkish</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/br.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Portuguese</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/in.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Hindi</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/de.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;German</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/us.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/tr.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Turkish</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/br.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Portuguese</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/in.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Hindi</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/de.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;German</span></a>
                     </div>
                 </li>
 
@@ -79,7 +83,7 @@
                         <div class="notification-scroll">
                             <div class="dropdown-item">
                                 <div class="media server-log">
-                                    <img src="../src/assets/img/profile-16.jpeg" class="img-fluid me-2" alt="avatar">
+                                    <img src="{{ url('src/assets/img/profile-16.jpeg') }}" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Kara Young</h6>
@@ -95,7 +99,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media ">
-                                    <img src="../src/assets/img/profile-15.jpeg" class="img-fluid me-2" alt="avatar">
+                                    <img src="{{ url('src/assets/img/profile-15.jpeg') }}" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Daisy Anderson</h6>
@@ -111,7 +115,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media file-upload">
-                                    <img src="../src/assets/img/profile-21.jpeg" class="img-fluid me-2" alt="avatar">
+                                    <img src="{{ url('src/assets/img/profile-21.jpeg') }}" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Oscar Garner</h6>
@@ -186,7 +190,7 @@
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar-container">
                             <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="../src/assets/img/profile-30.png" class="rounded-circle">
+                                <img alt="avatar" src="{{ url('src/assets/img/profile-30.png') }}" class="rounded-circle">
                             </div>
                         </div>
                     </a>
@@ -247,7 +251,7 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="./index.html">
-                                <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo">
+                                <img src="{{ url('src/assets/img/logo.svg') }}" class="navbar-logo" alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
@@ -630,8 +634,8 @@
                         </a>
                     </li>
 
-                    <li class="menu">
-                        <a href="#datatables" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu active">
+                        <a href="#datatables" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                                 <span>DataTables</span>
@@ -640,11 +644,11 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="datatables" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled show" id="datatables" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./table-datatable-basic.html"> Basic </a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="./table-datatable-striped-table.html"> Striped </a>
                             </li>
                             <li>
@@ -656,8 +660,8 @@
                         </ul>
                     </li>
 
-                    <li class="menu active">
-                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <li class="menu">
+                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                                 <span>Forms</span>
@@ -666,14 +670,14 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled show" id="forms" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./form-bootstrap-basic.html"> Basic </a>
                             </li>
                             <li>
                                 <a href="./form-input-group-basic.html"> Input Group </a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="./form-layouts.html"> Layouts </a>
                             </li>
                             <li>
@@ -911,104 +915,132 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            <div class="container">
-                <div class="container mw-100">
+            <div class="layout-px-spacing">
+
+                <div class="middle-content container-xxl p-0">
 
                     <!-- BREADCRUMB -->
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Form</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Layouts</li>
+                                <li class="breadcrumb-item"><a href="#">Setting</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Period</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
-                    <div class="row">
 
-                        <div id="flLoginForm" class="col-lg-12 layout-spacing">
-                            <div class="statbox widget box box-shadow">
-                                <div class="widget-header">
-                                    <div class="row">
-                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Gutters</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content widget-content-area">
-                                    <form class="row g-3">
-                                        <div class="col-md-6">
-                                            <label for="inputEmail4" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="inputEmail4">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="inputPassword4" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="inputPassword4">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputAddress" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="inputAddress2" class="form-label">Address 2</label>
-                                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="inputCity" class="form-label">City</label>
-                                            <input type="text" class="form-control" id="inputCity">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="inputState" class="form-label">State</label>
-                                            <select id="inputState" class="form-select">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="inputZip" class="form-label">Zip</label>
-                                            <input type="text" class="form-control" id="inputZip">
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                <label class="form-check-label" for="gridCheck">
-                                                    Check me out
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-primary">Sign in</button>
-                                        </div>
-                                    </form>
+                    <div class="row layout-top-spacing">
+                        <div class="col-12">
+                        </div>
 
-                                    <div class="code-section-container">
+                        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                            <div class="widget-content widget-content-area br-8">
+                                <table id="zero-config" class="table table-striped dt-table-hover" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Semester</th>
+                                            <th>Start Date Vote</th>
+                                            <th>End Date Vote</th>
+                                            <th>Start Date Submission</th>
+                                            <th>End Date Submission</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($periods as $period)
+                                            <tr>
+                                                <td>{{ $period->year }}</td>
+                                                @if ($period->semester == 0)
+                                                    <td>genap</td>
+                                                @else
+                                                    <td>ganjil</td>
+                                                @endif
+                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_vote); }}</td>
+                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_vote); }}</td>
+                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_submission); }}</td>
+                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_submission); }}</td>
+                                                @if ($period->is_active == 1)
+                                                    <td><button class="btn btn-primary" disabled>Active</button></td>
+                                                @else
+                                                    <td><button class="btn btn-secondary" disabled>Inactive</button></td>
+                                                @endif
+                                                <td>
+                                                    <a href="{{  url('admin/period/edit') }}/{{$period->id}}">
+                                                        <button class="btn btn-warning">Edit</button></td>
+                                                    </a>
+                                            </tr>
+                                        @endforeach
 
-                                        <button class="btn toggle-code-snippet"><span>Code</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down toggle-code-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
-                                        <div class="code-section text-left">
-
-                                        </div>
-                                    </div>
-                                </div>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Semester</th>
+                                            <th>Start Date Vote</th>
+                                            <th>End Date Vote</th>
+                                            <th>Start Date Submission</th>
+                                            <th>End Date Submission</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
+
             </div>
+
+            <!--  BEGIN FOOTER  -->
+            <div class="footer-wrapper mt-0">
+                <div class="footer-section f-section-1">
+                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">DesignReset</a>, All rights reserved.</p>
+                </div>
+                <div class="footer-section f-section-2">
+                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
+                </div>
+            </div>
+            <!--  END CONTENT AREA  -->
         </div>
         <!--  END CONTENT AREA  -->
     </div>
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="{{ url('src/plugins/src/global/vendors.min.js') }}"></script>
     <script src="{{ url('src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/waves/waves.min.js') }}"></script>
     <script src="{{ url('layouts/vertical-light-menu/app.js') }}"></script>
-    <script src="{{ url('src/plugins/src/highlight/highlight.pack.js') }}"></script>
+    <script src="{{ url('src/assets/js/custom.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ url('src/plugins/src/table/datatable/datatables.js') }}"></script>
+    <script>
+        $('#zero-config').DataTable({
+            "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
+        "<'table-responsive'tr>" +
+        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Search...",
+               "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 10
+        });
+    </script>
+    <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 </html>
