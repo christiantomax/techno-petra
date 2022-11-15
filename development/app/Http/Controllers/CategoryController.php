@@ -6,28 +6,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use App\Models\Period;
+use App\Models\Category;
 
-class PeriodController extends Controller
+class CategoryController extends Controller
 {
     public function index(){
-        $periods = Period::all();
-        return View::make('admin.setting-period-list')->with('periods', $periods);
+        $collections = Category::all();
+        return View::make('admin.setting-category-list')->with('collections', $collections);
     }
 
     public function edit(Request $request){
-        $period = Period::find($request->id);
-        return View::make('admin.setting-period-edit')->with('period', $period);
+        $collection = Category::find($request->id);
+        return View::make('admin.setting-category-edit')->with('collection', $collection);
     }
 
     public function editPost(Request $request){
-        $data = Period::where('year', $request->data_post['year'])
-        ->where('semester', $request->data_post['semester'])
+        $data = Category::where('name', $request->data_post['name'])
         ->where('id', '!=', $request->id)
         ->count();
         if ($data == 0){
             try {
-                $period = Period::where('id', $request->id)
+                $period = Category::where('id', $request->id)
                 ->update($request->data_post);
             } catch(\Illuminate\Database\QueryException $ex){
                 return $ex->getMessage();
@@ -39,7 +38,7 @@ class PeriodController extends Controller
         }else{
             return [
                 "status" => "403",
-                "message" => "error duplicate data year and semester"
+                "message" => "error duplicate data name"
             ];
         }
         return [
@@ -48,13 +47,12 @@ class PeriodController extends Controller
         ];
     }
 
-    public function create(Request $request){
-        $data = Period::where('year', $request->data_post['year'])
-                ->where('semester', $request->data_post['semester'])
+    public function createPost(Request $request){
+        $data = Category::where('name', $request->data_post['name'])
                 ->count();
         if ($data == 0){
             try {
-                $period = Period::create($request->data_post);
+                $period = Category::create($request->data_post);
             } catch(\Illuminate\Database\QueryException $ex){
                 return $ex->getMessage();
             }
@@ -65,9 +63,12 @@ class PeriodController extends Controller
         }else{
             return [
                 "status" => "403",
-                "message" => "error duplicate data year and semester"
+                "message" => "error duplicate data name"
             ];
         }
-        return "error";
+        return [
+            "status" => "500",
+            "message" => "internal server error"
+        ];
     }
 }

@@ -17,29 +17,26 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="{{ url('src/plugins/src/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('src/plugins/src/noUiSlider/nouislider.min.css') }}" rel="stylesheet" type="text/css">
+
     <!-- END THEME GLOBAL STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/filepond.min.css') }}">
-    <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/FilePondPluginImagePreview.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/src/tagify/tagify.css">') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/light/forms/switches.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/editors/quill/quill.snow.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/tagify/custom-tagify.css') }}">
-    <link href="{{ url('src/plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/dark/forms/switches.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/editors/quill/quill.snow.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/tagify/custom-tagify.css') }}">
-    <link href="{{ url('src/plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
+
+    <link href="{{ url('src/plugins/src/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/light/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/dark/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
@@ -1038,8 +1035,11 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="{{ url('src/plugins/src/tagify/tagify.min.js') }}"></script>
     <script src="{{ url('src/assets/js/apps/ecommerce-create.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/flatpickr/flatpickr.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/flatpickr/custom-flatpickr.js') }}"></script>
 
 
     <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
@@ -1051,15 +1051,15 @@
             enableTime: true,
             dateFormat: "Y-m-d H:i",
         });
-        var f1 = flatpickr(document.getElementById('end-date-vote'), {
+        var f2 = flatpickr(document.getElementById('end-date-vote'), {
             enableTime: true,
             dateFormat: "Y-m-d H:i",
         });
-        var f1 = flatpickr(document.getElementById('start-date-submission'), {
+        var f3 = flatpickr(document.getElementById('start-date-submission'), {
             enableTime: true,
             dateFormat: "Y-m-d H:i",
         });
-        var f1 = flatpickr(document.getElementById('end-date-submission'), {
+        var f4 = flatpickr(document.getElementById('end-date-submission'), {
             enableTime: true,
             dateFormat: "Y-m-d H:i",
         });

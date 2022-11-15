@@ -932,6 +932,7 @@
 
                     <div class="row layout-top-spacing">
                         <div class="col-12">
+                            {{-- {{dd($collections);}} --}}
                         </div>
 
                         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -939,36 +940,38 @@
                                 <table id="zero-config" class="table table-striped dt-table-hover" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Message Destination For</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($periods as $period)
+                                        @foreach ($collections as $collection)
                                             <tr>
-                                                <td>{{ $period->year }}</td>
-                                                @if ($period->semester == 0)
-                                                    <td>genap</td>
-                                                @else
-                                                    <td>ganjil</td>
-                                                @endif
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_submission); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_submission); }}</td>
-                                                @if ($period->is_active == 1)
+                                                <td>{{ $collection->id }}</td>
+                                                <td>{{ $collection->title }}</td>
+                                                <td>
+                                                    @if ($collection->news_for == 1)
+                                                        {{"All"}}
+                                                    @elseif ($collection->news_for == 2)
+                                                        {{"Public"}}
+                                                    @else
+                                                        {{"Team Leader"}}
+                                                    @endif
+                                                </td>
+                                                <td>{{ gmdate("Y-m-d | H:i:s", $collection->start_date); }}</td>
+                                                <td>{{ gmdate("Y-m-d | H:i:s", $collection->end_date); }}</td>
+                                                @if ($collection->is_active == 1)
                                                     <td><button class="btn btn-primary" disabled>Active</button></td>
                                                 @else
                                                     <td><button class="btn btn-secondary" disabled>Inactive</button></td>
                                                 @endif
                                                 <td>
-                                                    <a href="{{  url('admin/period/edit') }}/{{$period->id}}">
+                                                    <a href="{{  url('admin/news/edit') }}/{{$collection->id}}">
                                                         <button class="btn btn-warning">Edit</button>
                                                     </a>
                                                 </td>
@@ -978,15 +981,13 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Message Destination For</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
-                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>

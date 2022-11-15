@@ -932,6 +932,7 @@
 
                     <div class="row layout-top-spacing">
                         <div class="col-12">
+                            {{-- {{dd($collections);}} --}}
                         </div>
 
                         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -939,36 +940,42 @@
                                 <table id="zero-config" class="table table-striped dt-table-hover" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
+                                            <th>Period</th>
+                                            <th>Name Team</th>
+                                            <th>NRP Leader</th>
+                                            <th>member</th>
+                                            <th>categories</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($periods as $period)
+                                        @foreach ($collections as $collection)
                                             <tr>
-                                                <td>{{ $period->year }}</td>
-                                                @if ($period->semester == 0)
-                                                    <td>genap</td>
+                                                <td>{{ $collection->year }} |
+                                                @if ($collection->semester == 0)
+                                                    Genap
                                                 @else
-                                                    <td>ganjil</td>
+                                                    Ganjil
                                                 @endif
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_submission); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_submission); }}</td>
-                                                @if ($period->is_active == 1)
+                                                </td>
+                                                <td>{{ $collection->name }}</td>
+                                                <td>{{ $collection->nrp_leader }}</td>
+                                                <td>{{ $collection->member }}</td>
+                                                <td>
+                                                    @if ($collection->categories)
+                                                        {{rtrim($collection->categories, ", ")}}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                @if ($collection->is_active == 1)
                                                     <td><button class="btn btn-primary" disabled>Active</button></td>
                                                 @else
                                                     <td><button class="btn btn-secondary" disabled>Inactive</button></td>
                                                 @endif
                                                 <td>
-                                                    <a href="{{  url('admin/period/edit') }}/{{$period->id}}">
+                                                    <a href="{{  url('admin/team/edit') }}/{{$collection->id}}">
                                                         <button class="btn btn-warning">Edit</button>
                                                     </a>
                                                 </td>
@@ -978,15 +985,13 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
+                                            <th>Period</th>
+                                            <th>Name Team</th>
+                                            <th>NRP Leader</th>
+                                            <th>member</th>
+                                            <th>categories</th>
                                             <th>Status</th>
                                             <th>Action</th>
-                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>

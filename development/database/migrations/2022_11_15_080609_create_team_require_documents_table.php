@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('team_documents', function (Blueprint $table) {
+        Schema::create('team_require_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('id_team');
             $table->string('document_type');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('team_documents');
+        Schema::dropIfExists('team_require_documents');
     }
 };

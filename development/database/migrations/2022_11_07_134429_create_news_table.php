@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('id_user');
+            $table->string('title');
             $table->longText('content');
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->bigInteger('start_date')->nullable();
+            $table->bigInteger('end_date')->nullable();
+            $table->integer('news_for')->default(1);
             $table->integer('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();

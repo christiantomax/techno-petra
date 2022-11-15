@@ -20,3 +20,6 @@ Technopreneurship Universitas Kristen Petra
     > - Dosen
     > - Mahasiswa
     > - Public
+
+** Administrasi **
+    > - [ERD](https://app.creately.com/d/6eRtdrrCn37/edit)

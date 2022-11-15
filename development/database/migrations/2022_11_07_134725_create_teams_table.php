@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('id_user');
+            $table->foreignId('id_user')->nullable();
             $table->foreignId('id_period');
-            $table->string('name');
-            $table->string('nrp_leader');
-            $table->longText('member');
+            $table->string('name')->nullable();
+            $table->string('nrp_leader')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('member')->nullable();
             $table->string('slug')->nullable();
             $table->integer('is_active')->default(1);
             $table->timestamps();

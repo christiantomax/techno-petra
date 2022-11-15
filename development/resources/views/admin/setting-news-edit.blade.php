@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>DataTables Striped | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <title>Ecommerce Edit | CORK - Multipurpose Bootstrap Dashboard Template </title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
     <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
@@ -16,14 +16,32 @@
     <link href="{{ url('layouts/vertical-light-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/src/table/datatable/datatables.css') }}">
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="{{ url('src/plugins/src/noUiSlider/nouislider.min.css') }}" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/table/datatable/dt-global_style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/table/datatable/dt-global_style.css') }}">
-    <!-- END PAGE LEVEL STYLES -->
+    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/editors/quill/quill.snow.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/editors/quill/quill.snow.css') }}">
+
+    <link href="{{ url('src/plugins/src/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/light/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/dark/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link rel="stylesheet" href="{{ url('src/assets/css/light/apps/ecommerce-create.css') }}">
+    <link rel="stylesheet" href="{{ url('src/assets/css/dark/apps/ecommerce-create.css') }}">
+    <!--  END CUSTOM STYLE FILE  -->
 </head>
-<body class="layout-boxed">
+<body class="">
+
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
@@ -53,14 +71,14 @@
 
                 <li class="nav-item dropdown language-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ url('src/assets/img/1x1/us.svg') }}" class="flag-width" alt="flag">
+                        <img src="../src/assets/img/1x1/us.svg" class="flag-width" alt="flag">
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/us.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/tr.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Turkish</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/br.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Portuguese</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/in.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Hindi</span></a>
-                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{{ url('src/assets/img/1x1/de.svg') }}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;German</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/us.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;English</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/tr.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Turkish</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/br.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Portuguese</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/in.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;Hindi</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="../src/assets/img/1x1/de.svg" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;German</span></a>
                     </div>
                 </li>
 
@@ -83,7 +101,7 @@
                         <div class="notification-scroll">
                             <div class="dropdown-item">
                                 <div class="media server-log">
-                                    <img src="{{ url('src/assets/img/profile-16.jpeg') }}" class="img-fluid me-2" alt="avatar">
+                                    <img src="../src/assets/img/profile-16.jpeg" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Kara Young</h6>
@@ -99,7 +117,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media ">
-                                    <img src="{{ url('src/assets/img/profile-15.jpeg') }}" class="img-fluid me-2" alt="avatar">
+                                    <img src="../src/assets/img/profile-15.jpeg" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Daisy Anderson</h6>
@@ -115,7 +133,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media file-upload">
-                                    <img src="{{ url('src/assets/img/profile-21.jpeg') }}" class="img-fluid me-2" alt="avatar">
+                                    <img src="../src/assets/img/profile-21.jpeg" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Oscar Garner</h6>
@@ -190,7 +208,7 @@
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar-container">
                             <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="{{ url('src/assets/img/profile-30.png') }}" class="rounded-circle">
+                                <img alt="avatar" src="../src/assets/img/profile-30.png" class="rounded-circle">
                             </div>
                         </div>
                     </a>
@@ -234,12 +252,10 @@
         </header>
     </div>
     <!--  END NAVBAR  -->
-
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container " id="container">
 
         <div class="overlay"></div>
-        <div class="cs-overlay"></div>
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
@@ -251,7 +267,7 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="./index.html">
-                                <img src="{{ url('src/assets/img/logo.svg') }}" class="navbar-logo" alt="logo">
+                                <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
@@ -379,8 +395,8 @@
                         </ul>
                     </li>
 
-                    <li class="menu">
-                        <a href="#ecommerce" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu active">
+                        <a href="#ecommerce" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>Ecommerce</span>
@@ -389,7 +405,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="ecommerce" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled show" id="ecommerce" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./app-ecommerce-product-shop.html"> Shop </a>
                             </li>
@@ -402,7 +418,7 @@
                             <li>
                                 <a href="./app-ecommerce-product-add.html"> Create </a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="./app-ecommerce-product-edit.html"> Edit </a>
                             </li>
                         </ul>
@@ -634,8 +650,8 @@
                         </a>
                     </li>
 
-                    <li class="menu active">
-                        <a href="#datatables" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <li class="menu">
+                        <a href="#datatables" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                                 <span>DataTables</span>
@@ -644,11 +660,11 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled show" id="datatables" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="datatables" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./table-datatable-basic.html"> Basic </a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="./table-datatable-striped-table.html"> Striped </a>
                             </li>
                             <li>
@@ -915,6 +931,7 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
+
             <div class="layout-px-spacing">
 
                 <div class="middle-content container-xxl p-0">
@@ -923,73 +940,79 @@
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Setting</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Period</li>
+                                <li class="breadcrumb-item"><a href="#">App</a></li>
+                                <li class="breadcrumb-item"><a href="#">Ecommerce</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
 
-                    <div class="row layout-top-spacing">
-                        <div class="col-12">
-                        </div>
+                    <div class="row mb-4 layout-spacing layout-top-spacing">
 
-                        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-                            <div class="widget-content widget-content-area br-8">
-                                <table id="zero-config" class="table table-striped dt-table-hover" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($periods as $period)
-                                            <tr>
-                                                <td>{{ $period->year }}</td>
-                                                @if ($period->semester == 0)
-                                                    <td>genap</td>
-                                                @else
-                                                    <td>ganjil</td>
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="widget-content widget-content-area ecommerce-create-section">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="for" class="form-label">Message Notification For</label>
+                                            <select id="for" class="form-select" name="for">
+                                                <option value="2"
+                                                    @if ($collections->news_for == 1)
+                                                        selected
+                                                    @endif
+                                                    >Public</option>
+                                                <option value="3"
+                                                @if ($collections->news_for == 1)
+                                                    selected
                                                 @endif
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_submission); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_submission); }}</td>
-                                                @if ($period->is_active == 1)
-                                                    <td><button class="btn btn-primary" disabled>Active</button></td>
-                                                @else
-                                                    <td><button class="btn btn-secondary" disabled>Inactive</button></td>
+                                                >Team Leader</option>
+                                                <option value="1"
+                                                @if ($collections->news_for == 1)
+                                                    selected
                                                 @endif
-                                                <td>
-                                                    <a href="{{  url('admin/period/edit') }}/{{$period->id}}">
-                                                        <button class="btn btn-warning">Edit</button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                >All</option>
+                                            </select>
+                                        </div>
 
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                        <div class="col-sm-12 mt-4">
+                                            <label for="title" class="form-label">Title</label>
+                                            <input type="text" class="form-control" id="title" name="title" placeholder="Product Name" value="{{$collections->title}}">
+                                            <input type="hidden" class="form-control" id="id" name="id" placeholder="Product Name" value="{{$collections->id}}">
+                                        </div>
+
+                                        <div class="col-sm-12 mt-4">
+                                            <label>Description</label>
+                                            <div id="editor-container">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 mt-4">
+                                            <label for="start-date-news" class="form-label">Start Date News</label>
+                                            <input id="start-date-news" name="start-date-news" class="form-control flatpickr flatpickr-input active" type="text" value="{{ gmdate("Y-m-d | H:i:s", $collections->start_date); }}" placeholder="Select Date..">
+                                        </div>
+
+                                        <div class="col-6 mt-4">
+                                            <label for="end-date-news" class="form-label">End Date News</label>
+                                            <input id="end-date-news" name="end-date-news" class="form-control flatpickr flatpickr-input active" type="text" value="{{ gmdate("Y-m-d | H:i:s", $collections->end_date); }}" placeholder="Select Date..">
+                                        </div>
+
+                                        <div class="form-check form-switch form-check-inline form-switch-primary col-6 mt-4">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="is_active"
+                                            @if ($collections->is_active == 1)
+                                                    checked
+                                            @endif>
+                                            <label class="form-check-label" for="form-switch-primary">Active</label>
+                                        </div>
+
+                                        <div class="col-12 mt-4">
+                                            <button type="submit" class="btn-submit btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
+
                         </div>
 
                     </div>
@@ -999,7 +1022,7 @@
             </div>
 
             <!--  BEGIN FOOTER  -->
-            <div class="footer-wrapper mt-0">
+            <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
                     <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">DesignReset</a>, All rights reserved.</p>
                 </div>
@@ -1007,40 +1030,127 @@
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
                 </div>
             </div>
-            <!--  END CONTENT AREA  -->
+            <!--  END FOOTER  -->
+
         </div>
         <!--  END CONTENT AREA  -->
     </div>
     <!-- END MAIN CONTAINER -->
 
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <script src="{{ url('src/plugins/src/global/vendors.min.js') }}"></script>
     <script src="{{ url('src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/perfect-scrollbarperfect-scrollbar.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/waves/waves.min.js') }}"></script>
     <script src="{{ url('layouts/vertical-light-menu/app.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/highlight/highlight.pack.js') }}"></script>
     <script src="{{ url('src/assets/js/custom.js') }}"></script>
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="{{ url('src/plugins/src/table/datatable/datatables.js') }}"></script>
+    <script src="{{ url('src/plugins/src/editors/quill/quill.js') }}"></script>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{{ url('src/plugins/src/flatpickr/flatpickr.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/flatpickr/custom-flatpickr.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/tagify/tagify.min.js') }}"></script>
+    <script src="{{ url('src/assets/js/apps/ecommerce-create.js') }}"></script>
+
+
+    <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
     <script>
-        $('#zero-config').DataTable({
-            "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
-        "<'table-responsive'tr>" +
-        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
-            "oLanguage": {
-                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-                "sInfo": "Showing page _PAGE_ of _PAGES_",
-                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-                "sSearchPlaceholder": "Search...",
-               "sLengthMenu": "Results :  _MENU_",
-            },
-            "stripeClasses": [],
-            "lengthMenu": [7, 10, 20, 50],
-            "pageLength": 10
+        var f1 = flatpickr(document.getElementById('start-date-news'), {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
         });
+        var f1 = flatpickr(document.getElementById('end-date-news'), {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+    </script>
+
+    <script>
+        $(".btn-submit").click(function(e){
+
+            e.preventDefault();
+
+            let data = [
+                $('select[name=for] option').filter(':selected').val(),
+                $("input[name=title]").val(),
+                JSON.stringify(quill.getContents()),
+                Math.floor(new Date($("input[name=start-date-news]").val()).getTime() / 1000),
+                Math.floor(new Date($("input[name=end-date-news]").val()).getTime() / 1000),
+                $('#is_active').is(":checked") ? 1 : 0,
+                $("input[name=id]").val()
+            ];
+
+            $.ajax({
+                type:'POST',
+                url:"{{ route('ajaxNewsEdit.post') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "data_post": {
+                        for:data[0],
+                        title:data[1],
+                        content:data[2],
+                        start_date_news:data[3],
+                        end_date_news:data[4],
+                        is_active:data[5]
+                    },
+                    "id": data[6]
+                },
+                success:function(data){
+                    if(data.status == 200){
+                        swal({
+                            title: "Success",
+                            text: "Data saved",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: false
+                            },
+                            function(isConfirm) {
+                            if (isConfirm) {
+                                window.location.href = "{{ route('news.list') }}";
+                            }
+                        });
+                    }else{
+                        swal("Fail", data.message, "warning");
+                    }
+                },
+                error: function(xhr, textStatus, error) {
+                    swal(textStatus, error, "warning");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        var quill;
+        $( document ).ready(function() {
+            quill = new Quill('#editor-container', {
+                modules: {
+                    toolbar: [
+                    [{ header: [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['image', 'code-block']
+                    ]
+                },
+                placeholder: 'Write content...',
+                theme: 'snow'  // or 'bubble'
+            });
+            quill.setContents(JSON.parse(<?php echo $collections->content;?>));
+        });
+
+
+
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
 </body>

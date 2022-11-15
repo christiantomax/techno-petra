@@ -14,6 +14,7 @@ class Team extends Model
         'name',
         'nrp_leader',
         'member',
+        'description',
         'slug',
         'is_active',
     ];

@@ -17,6 +17,10 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="../src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/src/table/datatable/datatables.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/table/datatable/dt-global_style.css') }}">
@@ -929,6 +933,26 @@
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
+                    <div class="row layout-top-spacing">
+                        <div class="col-12">
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                            <div class="form-group">
+                                <input id="id" type="hidden" name='id' class="form-control" value='{{$collections['id']}}'>
+                                <label for="categories">Categories</label>
+                                <div class="input-group mb-3">
+                                    <select class="categories form-select pb-4" id="categories" name="states[]" multiple="multiple" aria-label="select categories">
+                                        @foreach ($collections['categories'] as $collection)
+                                            <option value="{{$collection->id}}">{{$collection->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn-submit btn btn-primary">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="row layout-top-spacing">
                         <div class="col-12">
@@ -939,38 +963,16 @@
                                 <table id="zero-config" class="table table-striped dt-table-hover" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Name</th>
+                                            <th class="w-25 text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($periods as $period)
+                                        @foreach ($collections['collections'] as $collection)
                                             <tr>
-                                                <td>{{ $period->year }}</td>
-                                                @if ($period->semester == 0)
-                                                    <td>genap</td>
-                                                @else
-                                                    <td>ganjil</td>
-                                                @endif
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_vote); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->start_date_submission); }}</td>
-                                                <td>{{ gmdate("Y-m-d | H:i:s", $period->end_date_submission); }}</td>
-                                                @if ($period->is_active == 1)
-                                                    <td><button class="btn btn-primary" disabled>Active</button></td>
-                                                @else
-                                                    <td><button class="btn btn-secondary" disabled>Inactive</button></td>
-                                                @endif
-                                                <td>
-                                                    <a href="{{  url('admin/period/edit') }}/{{$period->id}}">
-                                                        <button class="btn btn-warning">Edit</button>
-                                                    </a>
+                                                <td>{{ $collection->name }}</td>
+                                                <td class="w-25 text-right">
+                                                    <button class="btn btn-danger" onclick="deleteCategory({{$collection->id}})">Delete</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -978,15 +980,8 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Year</th>
-                                            <th>Semester</th>
-                                            <th>Start Date Vote</th>
-                                            <th>End Date Vote</th>
-                                            <th>Start Date Submission</th>
-                                            <th>End Date Submission</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
+                                            <th>Name</th>
+                                            <th class="w-25 text-right">Action</th>
                                     </tfoot>
                                 </table>
                             </div>
@@ -1024,8 +1019,18 @@
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{ url('src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ url('src/plugins/src/table/datatable/datatables.js') }}"></script>
+
+    <script src="{{ url('src/plugins/src/autocomplete/autoComplete.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/autocomplete/custom-autoComplete.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            $('.categories').select2();
+        });
+
         $('#zero-config').DataTable({
             "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
         "<'table-responsive'tr>" +
@@ -1035,11 +1040,111 @@
                 "sInfo": "Showing page _PAGE_ of _PAGES_",
                 "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
                 "sSearchPlaceholder": "Search...",
-               "sLengthMenu": "Results :  _MENU_",
+                "sLengthMenu": "Results :  _MENU_",
             },
             "stripeClasses": [],
             "lengthMenu": [7, 10, 20, 50],
             "pageLength": 10
+        });
+    </script>
+    <script>
+        function deleteCategory(id){
+            swal({
+                title: "Warning!",
+                text: "Are you sure remove the category?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonClass: "btn-secondary",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Delete",
+                closeOnConfirm: false
+                },
+                function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type:'POST',
+                        url:"{{ route('ajaxDeleteTeamCategory.post') }}",
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                            "data_post": {
+                                id: id
+                            },
+                        },
+                        success:function(data){
+                            if(data.status == 200){
+                                swal({
+                                    title: "Success",
+                                    text: "Data saved",
+                                    type: "success",
+                                    confirmButtonClass: "btn-success",
+                                    confirmButtonText: "OK",
+                                    closeOnConfirm: false
+                                    },
+                                    function(isConfirm) {
+                                    if (isConfirm) {
+                                        window.location.reload();
+                                    }
+                                });
+                            }else{
+                                swal("Fail", data.message, "warning");
+                            }
+                        },
+                        error: function(xhr, textStatus, error) {
+                            swal(textStatus, error, "warning");
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(".btn-submit").click(function(e){
+
+            e.preventDefault();
+            let temp = $('#categories').select2('data');
+            let categories = [];
+            for (var key in temp) {
+                categories.push(temp[key]["id"]);
+            }
+            let data = [
+                $("input[name=id]").val(),
+                JSON.stringify(categories),
+            ];
+            $.ajax({
+                type:'POST',
+                url:"{{ route('ajaxAddTeamCategory.post') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "data_post": {
+                        id:data[0],
+                        categories:data[1],
+                    },
+                },
+                success:function(data){
+                    if(data.status == 200){
+                        swal({
+                            title: "Success",
+                            text: "Data saved",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: false
+                            },
+                            function(isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                    }else{
+                        swal("Fail", data.message, "warning");
+                    }
+                },
+                error: function(xhr, textStatus, error) {
+                    swal(textStatus, error, "warning");
+                }
+            });
+
         });
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
