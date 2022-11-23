@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('team_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('id_team');
-            $table->string('document_type');
-            $table->string('document_ext');
+            $table->foreignId('id_team_require_documents');
+            $table->string('name');
+            $table->string('type');
+            $table->string('ext')->nullable();
+            $table->bigInteger('file_size')->nullable();
             $table->integer('sort');
-            $table->string('url_document');
+            $table->string('url_document')->nullable();
             $table->integer('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();

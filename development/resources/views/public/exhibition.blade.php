@@ -11,6 +11,9 @@
 
     <link href="../src/assets/css/dark/elements/custom-pagination.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../src/assets/css/dark/apps/blog-post.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/editors/quill/quill.snow.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/editors/quill/quill.snow.css') }}">
 <!--  END CUSTOM STYLE FILE  -->
 
 <!-- BEGIN CSS -->
@@ -28,6 +31,19 @@
     transition: .7s;
 }
 
+.image-card-exhibition{
+    height: 25vh;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.image-card-exhibition img{
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
 </style>
 <!-- END CSS -->
 
@@ -77,18 +93,41 @@
 </div>
 
     <div class="row">
-        @for ($i = 20; $i >= 0; $i--)
+        @foreach ($collections as $collection)
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-4">
             <a class="card style-6 card-exhibition" href="./app-ecommerce-product.html">
-                <img src="../src/assets/img/product-3.jpg" class="card-img-top" alt="...">
+                <div class="image-card-exhibition">
+                    <img src="
+                    @if ($collection->thumbnail)
+                        {{$collection->thumbnail}}
+                    @else
+                        {{url('/files/logo-petra.webp')}}
+                    @endif
+                " alt="techno-petra-{{strtolower(str_replace(" ","-",$collection->name))}}">
+                </div>
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 mb-5">
-                            <b class="fs-2 lh-sm card-title">Li Europan lingues es membres</b>
+                            <b class="fs-2 lh-sm card-title">{{$collection->name}}</b>
                         </div>
 
                         <div class="col-12 mb-5">
-                            <small class="breadcrumb breadcrumb-item fs-6 lh-sm">Category / Category / Category</small>
+                            <p>
+                                <?php
+                                    $temp = rtrim($collection->categories, ", ");
+                                    $temp = explode(", ", $temp);
+                                    if(count($temp) > 0){
+                                        echo "Category :";
+                                    }
+                                ?>
+                            </p>
+                            <small class="breadcrumb breadcrumb-item fs-6 lh-sm">
+                                <?php
+                                    for ($i=0; $i < count($temp) ; $i++) {
+                                        echo '<button type="button" class="btn btn-primary btn-sm me-1 text-white">'.$temp[$i].'</button>';
+                                    }
+                                ?>
+                            </small>
                         </div>
 
                         <div class="d-grid col-12 mx-auto">
@@ -98,7 +137,7 @@
                 </div>
             </a>
         </div>
-        @endfor
+        @endforeach
     </div>
 
 
@@ -110,7 +149,17 @@
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ url('src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
 <script src="{{ url('src/plugins/src/glightbox/glightbox.min.js') }}"></script>
+<script src="{{ url('src/plugins/src/editors/quill/quill.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
+<script>
+    function quillGetHTML(inputDelta) {
+        var tempCont = document.createElement("div");
+        (new Quill(tempCont)).setContents(inputDelta);
+        return tempCont.getElementsByClassName("ql-editor")[0].innerHTML;
+    }
+
+    console.log(quillGetHTML(JSON.parse({"ops":[{"insert":"asdf\n"}]})));
+</script>
 
 @include('public.footer')

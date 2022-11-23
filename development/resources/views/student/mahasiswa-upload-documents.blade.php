@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Techno | Edit Period</title>
+    <title>Techno | Upload Document</title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
     <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
@@ -20,25 +20,31 @@
     <link href="{{ url('layouts/vertical-light-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="{{ url('src/plugins/src/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('src/plugins/src/noUiSlider/nouislider.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/editors/quill/quill.snow.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/editors/quill/quill.snow.css') }}">
 
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/filepond.min.css') }}">
+    <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/FilePondPluginImagePreview.min.css') }}">
+
     <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{ url('src/plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="{{ url('src/plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
 
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" href="{{ url('src/assets/css/light/apps/ecommerce-create.css') }}">
-    <link rel="stylesheet" href="{{ url('src/assets/css/dark/apps/ecommerce-create.css') }}">
-    <!--  END CUSTOM STYLE FILE  -->
+    <link href="{{ url('src/plugins/css/dark/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/plugins/css/light/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ url('src/plugins/src/sweetalerts2/sweetalerts2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    />
+    <!-- END PAGE LEVEL STYLES -->
 </head>
-<body class="">
+<body class="layout-boxed">
 
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
@@ -250,10 +256,12 @@
         </header>
     </div>
     <!--  END NAVBAR  -->
+
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container " id="container">
 
         <div class="overlay"></div>
+        <div class="cs-overlay"></div>
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
@@ -263,84 +271,93 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-
-            <div class="layout-px-spacing">
-
-                <div class="middle-content container-xxl p-0">
+            <div class="container">
+                <div class="container">
 
                     <!-- BREADCRUMB -->
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                                <li class="breadcrumb-item"><a href="#">Setting</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Period</li>
+                                <li class="breadcrumb-item"><a href="#">Form</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">File Upload</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
 
-                    <div class="row mb-4 layout-spacing layout-top-spacing">
-
+                    <div class="row layout-top-spacing">
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-
                             <div class="widget-content widget-content-area ecommerce-create-section">
                                 <form>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="year" class="form-label">Year</label>
-                                            <input type="hidden" name="id" class="form-control" id="id" value={{ $period->id }}>
-                                            <input type="number" name="year" class="form-control" id="year" value={{ $period->year }}>
+                                        <div class="col-md-12 form-group">
+                                            <label for="youtube">
+                                                Link Youtube
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                                </a>
+                                            </label>
+                                            <input type="text" class="form-control mb-3" id="youtube" name="youtube" placeholder="Type link youtube project ..."
+                                                @if ($data['youtube'] != "")
+                                                    value="{{ $data['youtube']->url_document}}"
+                                                @endif>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="Semester" class="form-label">Semester</label>
-                                            <select id="Semester" class="form-select" name="semester">
-                                                @if ($period->semester == 0)
-                                                    <option value="1">ganjil</option>
-                                                    <option value="0" selected>genap</option>
-                                                @else
-                                                    <option value="1" selected>ganjil</option>
-                                                    <option value="0">genap</option>
-                                                @endif
-                                            </select>
+
+                                        <div class="col-12 form-group">
+                                            <label for="name">
+                                                Proposal Project
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                                </a>
+                                            </label>
+                                            <input type="file"
+                                                id="proposal"
+                                                name="proposal"
+                                                data-max-file-size="3MB"
+                                                data-max-files="1"
+                                            />
                                         </div>
-                                        <div class="col-6 mt-4">
-                                            <label for="start-date-vote" class="form-label">Start Date Vote</label>
-                                            <input id="start-date-vote" name="start-date-vote" value="{{ gmdate("Y-m-d", $period->start_date_vote); }} {{ gmdate("H:i", $period->start_date_vote); }}" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date..">
+
+                                        <div class="col-12 form-group">
+                                            <label for="thumbnail">
+                                                Project Thumbnail
+                                                <button type="button" class="bg-transparent border-0 bs-tooltip" data-bs-placement="right" title="allowed file image : png, jpg, jpeg | max file size : 2MB">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                                </button>
+                                            </label>
+                                            <input type="file"
+                                                id="thumbnail"
+                                                name="thumbnail"
+                                                data-max-file-size="3MB"
+                                                data-max-files="1"
+                                            />
                                         </div>
-                                        <div class="col-6  mt-4">
-                                            <label for="end-date-vote" class="form-label">End Date Vote</label>
-                                            <input id="end-date-vote" name="end-date-vote" value="{{ gmdate("Y-m-d", $period->end_date_vote); }} {{ gmdate("H:i", $period->end_date_vote); }}" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date..">
+
+                                        <div class="col-12 form-group">
+                                            <label for="name">Project Image Gallery</label>
+                                            <input type="file"
+                                                id="project-preview"
+                                                name="project-preview"
+                                                multiple
+                                                data-allow-reorder="true"
+                                                data-max-file-size="1MB"
+                                                data-max-files="3"
+                                            />
                                         </div>
-                                        <div class="col-6 mt-4">
-                                            <label for="start-date-submission" class="form-label">Start Date Submission</label>
-                                            <input id="start-date-submission" name="start-date-submission" value="{{ gmdate("Y-m-d", $period->start_date_submission); }} {{ gmdate("H:i", $period->start_date_submission); }}" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date..">
-                                        </div>
-                                        <div class="col-6 mt-4">
-                                            <label for="end-date-submission" class="form-label">End Date Submission</label>
-                                            <input id="end-date-submission" name="end-date-submission" value="{{ gmdate("Y-m-d", $period->end_date_submission); }} {{ gmdate("H:i", $period->end_date_submission); }}" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date..">
-                                        </div>
-                                        <div class="form-check form-switch form-check-inline form-switch-primary col-6 mt-4">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="is_active"
-                                                @if ($period->is_active == 1)
-                                                    checked
-                                                @endif
-                                            >
-                                            <label class="form-check-label" for="form-switch-primary">Active</label>
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <button class="btn-submit btn btn-primary">Submit</button>
+
+                                        <div class="col-md-12 mt-4">
+                                            <div class="form-group text-end">
+                                                <button class="btn-submit btn btn-primary">Save</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-
                         </div>
 
                     </div>
 
                 </div>
-
             </div>
 
             <!--  BEGIN FOOTER  -->
@@ -359,101 +376,131 @@
     </div>
     <!-- END MAIN CONTAINER -->
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ url('src/plugins/src/global/vendors.min.js') }}"></script>
     <script src="{{ url('src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/perfect-scrollbarperfect-scrollbar.min.js') }}"></script>
+    <script src="{{ url('src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/waves/waves.min.js') }}"></script>
     <script src="{{ url('layouts/vertical-light-menu/app.js') }}"></script>
-
     <script src="{{ url('src/plugins/src/highlight/highlight.pack.js') }}"></script>
-    <script src="{{ url('src/assets/js/custom.js') }}"></script>
-    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="../src/assets/js/scrollspyNav.js"></script>
+    <script src="../src/plugins/src/filepond/filepond.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginFileValidateType.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImagePreview.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageCrop.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageResize.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageTransform.min.js"></script>
+    <script src="../src/plugins/src/filepond/filepondPluginFileValidateSize.min.js"></script>
+    <script src="../src/plugins/src/filepond/custom-filepond.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="{{ url('src/plugins/src/tagify/tagify.min.js') }}"></script>
-
-    <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
 
     <script>
-        var f1 = flatpickr(document.getElementById('start-date-vote'), {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        const imageGallery = document.querySelector('input[name="project-preview"]');
+        const proposal = document.querySelector('input[name="proposal"]');
+        const thumbnail = document.querySelector('input[name="thumbnail"]');
+
+        const pondImageGallery = FilePond.create(imageGallery,{
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
         });
-        var f1 = flatpickr(document.getElementById('end-date-vote'), {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+        pondImageGallery.setOptions({
+            maxFiles: 15,
+            required: true,
+            acceptedFileTypes: ['image/jpeg','image/jpg','image/png']
         });
-        var f1 = flatpickr(document.getElementById('start-date-submission'), {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+        const pondProposal = FilePond.create(proposal,{
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
         });
-        var f1 = flatpickr(document.getElementById('end-date-submission'), {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+        const pondThumbnail = FilePond.create(thumbnail,{
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
         });
+
     </script>
-    <script type="text/javascript">
+    <script>
+        let arrayImageGallery = [];
+        let tempData;
         $(".btn-submit").click(function(e){
 
-        e.preventDefault();
+            e.preventDefault();
 
-        let data = [
-            $("input[name=year]").val(),
-            $('select[name=semester] option').filter(':selected').val(),
-            Math.floor(new Date($("input[name=start-date-vote]").val()).getTime() / 1000),
-            Math.floor(new Date($("input[name=end-date-vote]").val()).getTime() / 1000),
-            Math.floor(new Date($("input[name=start-date-submission]").val()).getTime() / 1000),
-            Math.floor(new Date($("input[name=end-date-submission]").val()).getTime() / 1000),
-            $('#is_active').is(":checked") ? 1 : 0,
-            $("input[name=id]").val()
-        ];
-
-        $.ajax({
-            type:'POST',
-            url:"{{ route('ajaxPeriodEdit.post') }}",
-            data:{
-                "_token": "{{ csrf_token() }}",
-                "data_post": {
-                    year:data[0],
-                    semester:data[1],
-                    start_date_vote:data[2],
-                    end_date_vote:data[3],
-                    start_date_submission:data[4],
-                    end_date_submission:data[5],
-                    is_active:data[6]
-                },
-                "id": data[7]
-            },
-            success:function(data){
-                if(data.status == 200){
-                    swal({
-                        title: "Success",
-                        text: "Data saved",
-                        type: "success",
-                        confirmButtonClass: "btn-success",
-                        confirmButtonText: "OK",
-                        closeOnConfirm: false
-                        },
-                        function(isConfirm) {
-                        if (isConfirm) {
-                            window.location.href = "{{ route('period.list') }}";
-                        }
-                    });
-                }else{
-                    swal("Fail", "Data duplicate", "warning");
-                }
-            },
-            error: function(xhr, textStatus, error) {
-                swal(textStatus, error, "warning");
+            let data = new FormData();
+            // Append data
+            if(pondProposal.getFiles()[0]){
+                data.append('proposal',pondProposal.getFiles()[0].file);
             }
-        });
+            if(pondThumbnail.getFiles()[0]){
+                data.append('thumbnail',pondThumbnail.getFiles()[0].file);
+            }
+            let fileName = [];
+            if(pondImageGallery.getFiles()){
+                tempData = pondImageGallery.getFiles();
+                for (let i = 0; i < tempData.length; i++) {
+                    data.append('imageGallery'+i,tempData[i].file);
+                    fileName.push(tempData[i].file.name);
+                }
+            }
+            console.log(pondImageGallery.getFiles());
+            data.append('_token','{{ csrf_token() }}');
+            data.append('count',tempData.length);
+            data.append('youtube',$("input[name=youtube]").val());
+            data.append('listFileName',fileName);
 
+            $.ajax({
+                url:"{{ route('ajaxUploadDocumentProject.post') }}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                data: data,
+                success:function(data){
+                    console.log(data);
+                    if(data.status == 200){
+                        swal({
+                            title: "Success",
+                            text: "Data saved",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: false
+                            },
+                            function(isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                    }else{
+                        swal("Fail", data.message, "warning");
+                    }
+                },
+                error: function(xhr, textStatus, error) {
+                    swal(textStatus, error, "warning");
+                }
+            });
         });
     </script>
-    <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+        pondImageGallery.addFiles(
+            @if (count($data['imageGallery']) > 0)
+                @foreach ($data['imageGallery'] as $image)
+                    '{{$image->url_document}}',
+                @endforeach
+            @endif
+        );
+        @if ($data['thumbnail'] != "")
+        pondThumbnail.addFile('{{$data['thumbnail']->url_document}}');
+        @endif
+        @if ($data['proposal'] != "")
+            pondProposal.addFile('{{$data['proposal']->url_document}}');
+        @endif
+    </script>
 </body>
 </html>

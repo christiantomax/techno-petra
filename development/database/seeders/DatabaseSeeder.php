@@ -153,8 +153,8 @@ class DatabaseSeeder extends Seeder
             'id_user' => 1,
             'name' => 'Study Wars',
             'nrp_leader' => 'qwe123456',
-            'member' => '- handy',
-            'description' => '- handy',
+            'member' => '{"ops":[{"insert":"asdf\n"}]}',
+            'description' => '{"ops":[{"insert":"asdf\n"}]}',
             'slug' => 'handy'
         ]);
         DB::table('teams')->insert([
@@ -162,8 +162,8 @@ class DatabaseSeeder extends Seeder
             'id_user' => 2,
             'name' => 'Thunders Gods',
             'nrp_leader' => "asd123456",
-            'member' => '- budio',
-            'description' => '- budio',
+            'member' => '{"ops":[{"insert":"asdf\n"}]}',
+            'description' => '{"ops":[{"insert":"asdf\n"}]}',
             'slug' => 'budio'
         ]);
         DB::table('teams')->insert([
@@ -171,8 +171,8 @@ class DatabaseSeeder extends Seeder
             'id_user' => 3,
             'name' => 'United Army',
             'nrp_leader' => 'zxc123456',
-            'member' => '- ratu',
-            'description' => '- ratu',
+            'member' => '{"ops":[{"insert":"asdf\n"}]}',
+            'description' => '{"ops":[{"insert":"asdf\n"}]}',
             'slug' => 'ratu'
         ]);
 
@@ -198,6 +198,28 @@ class DatabaseSeeder extends Seeder
             'end_date' => 1667840509,
         ]);
 
-
+        DB::table('team_require_documents')->insert([
+            'name' => 'Link Youtube',
+            'type' => 'text',
+            'sort' => 1,
+        ]);
+        DB::table('team_require_documents')->insert([
+            'name' => 'Project thumbnail',
+            'type' => 'file',
+            'ext' => '["png","jpg","jpeg"]',
+            'sort' => 2,
+        ]);
+        DB::table('team_require_documents')->insert([
+            'name' => 'Proposal (pdf)',
+            'type' => 'file',
+            'ext' => '["pdf"]',
+            'sort' => 3,
+        ]);
+        DB::table('team_require_documents')->insert([
+            'name' => 'Project preview',
+            'type' => 'file',
+            'ext' => '["png","jpg","jpeg"]',
+            'sort' => 4,
+        ]);
     }
 }

@@ -10,10 +10,13 @@ class TeamDocument extends Model
     use HasFactory;
     protected $fillable = [
         'id_team',
-        'document_type',
-        'document_ext',
+        'id_team_require_documents',
+        'type',
+        'name',
+        'ext',
         'sort',
         'url_document',
+        'file_size',
         'is_active',
     ];
 }

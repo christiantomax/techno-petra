@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Account Settings | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <title>File Upload | CORK - Multipurpose Bootstrap Dashboard Template </title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
     <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ url('layouts/vertical-light-menu/loader.js') }}"></script>
-
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ url('src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -17,57 +16,31 @@
     <link href="{{ url('layouts/vertical-light-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/src/tagify/tagify.css') }}">
-    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/tagify/custom-tagify.css') }}">
-
-    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/tagify/custom-tagify.css') }}">
-
-    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ url('src/plugins/css/light/editors/markdown/simplemde.min.css') }}">
-
-    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ url('src/plugins/css/dark/editors/markdown/simplemde.min.css') }}">
-
-    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('src/plugins/css/light/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/editors/quill/quill.snow.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/editors/quill/quill.snow.css') }}">
 
     <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/filepond.min.css') }}">
     <link rel="stylesheet" href="{{ url('src/plugins/src/filepond/FilePondPluginImagePreview.min.css') }}">
-    <link href="{{ url('src/plugins/src/notification/snackbar/snackbar.min.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ url('src/plugins/src/sweetalerts2/sweetalerts2.css') }}">
 
+    <link href="{{ url('src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('src/plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('src/assets/css/light/components/tabs.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/light/elements/alert.css') }}">
 
-    <link href="{{ url('src/plugins/css/light/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('src/plugins/css/light/notification/snackbar/custom-snackbar.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/light/forms/switches.css') }}">
-    <link href="{{ url('src/assets/css/light/components/list-group.css') }}" rel="stylesheet" type="text/css">
-
-    <link href="{{ url('src/assets/css/light/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
-
-
-
+    <link href="{{ url('src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('src/plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('src/assets/css/dark/components/tabs.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/dark/elements/alert.css') }}">
 
     <link href="{{ url('src/plugins/css/dark/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('src/plugins/css/dark/notification/snackbar/custom-snackbar.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ url('src/assets/css/dark/forms/switches.css') }}">
-    <link href="{{ url('src/assets/css/dark/components/list-group.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('src/plugins/css/light/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ url('src/plugins/src/sweetalerts2/sweetalerts2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="{{ url('src/assets/css/dark/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
-
-
-    <!--  END CUSTOM STYLE FILE  -->
+    <link
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    />
+    <!-- END PAGE LEVEL STYLES -->
 </head>
-<body class=" layout-boxed">
+<body class="layout-boxed">
 
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
@@ -705,8 +678,8 @@
                         </ul>
                     </li>
 
-                    <li class="menu">
-                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <li class="menu active">
+                        <a href="#forms" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                                 <span>Forms</span>
@@ -715,7 +688,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="forms" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled show" id="forms" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./form-bootstrap-basic.html"> Basic </a>
                             </li>
@@ -755,7 +728,7 @@
                             <li>
                                 <a href="./form-wizard.html"> Wizards </a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="./form-fileupload.html"> File Upload </a>
                             </li>
                             <li>
@@ -783,8 +756,8 @@
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>USER AND PAGES</span></div>
                     </li>
 
-                    <li class="menu active">
-                        <a href="#users" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <li class="menu">
+                        <a href="#users" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                 <span>Users</span>
@@ -793,11 +766,11 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled show" id="users" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
                             <li>
                                 <a href="./user-profile.html"> Profile </a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="./user-account-settings.html"> Account Settings </a>
                             </li>
                         </ul>
@@ -960,157 +933,99 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            <div class="layout-px-spacing">
-
-                <div class="middle-content container-xxl p-0">
+            <div class="container">
+                <div class="container">
 
                     <!-- BREADCRUMB -->
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Users</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Account Settings</li>
+                                <li class="breadcrumb-item"><a href="#">Form</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">File Upload</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
 
-                    <div class="account-settings-container layout-top-spacing">
+                    <div class="row layout-top-spacing">
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="widget-content widget-content-area ecommerce-create-section">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12 form-group">
+                                            <label for="youtube">
+                                                Link Youtube
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                                </a>
+                                            </label>
+                                            <input type="text" class="form-control mb-3" id="youtube" name="youtube" placeholder="Type link youtube project ..."
+                                                @if ($data['youtube'] != "")
+                                                    value="{{ $data['youtube']->url_document}}"
+                                                @endif>
+                                        </div>
 
-                        <div class="account-content">
+                                        <div class="col-12 form-group">
+                                            <label for="name">
+                                                Proposal Project
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                                </a>
+                                            </label>
+                                            <input type="file"
+                                                id="proposal"
+                                                name="proposal"
+                                                data-max-file-size="3MB"
+                                                data-max-files="1"
+                                            />
+                                        </div>
 
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <form class="section general-info">
-                                        <div class="info">
-                                            <h6 class="">General Information</h6>
-                                            <div class="row">
-                                                <div class="col-lg-11 mx-auto">
-                                                    <div class="row">
-                                                        <div class="col-xl-2 col-lg-12 col-md-4">
-                                                            <div class="profile-image  mt-4 pe-md-4">
+                                        <div class="col-12 form-group">
+                                            <label for="thumbnail">
+                                                Project Thumbnail
+                                                <button type="button" class="bg-transparent border-0 bs-tooltip" data-bs-placement="right" title="allowed file image : png, jpg, jpeg | max file size : 2MB">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                                </button>
+                                            </label>
+                                            <input type="file"
+                                                id="thumbnail"
+                                                name="thumbnail"
+                                                data-max-file-size="3MB"
+                                                data-max-files="1"
+                                            />
+                                        </div>
 
-                                                                <!-- // The classic file input element we'll enhance
-                                                                // to a file pond, we moved the configuration
-                                                                // properties to JavaScript -->
+                                        <div class="col-12 form-group">
+                                            <label for="name">Project Image Gallery</label>
+                                            <input type="file"
+                                                id="project-preview"
+                                                name="project-preview"
+                                                multiple
+                                                data-allow-reorder="true"
+                                                data-max-file-size="1MB"
+                                                data-max-files="3"
+                                            />
+                                        </div>
 
-                                                                <div class="img-uploader-content">
-                                                                    <input type="file" class="filepond"
-                                                                        name="filepond" accept="image/png, image/jpeg, image/gif"/>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
-                                                            <div class="form">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="fullName">Team Name</label>
-                                                                            <input type="text" class="form-control mb-3" id="fullName" placeholder="Full Name" value="Jimmy Turner">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="profession">Nrp Leader</label>
-                                                                            <input type="text" class="form-control mb-3" id="profession" placeholder="Designer" value="Web Developer">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="country">Country</label>
-                                                                            <select class="form-select mb-3" id="country">
-                                                                                <option>All Countries</option>
-                                                                                <option selected>United States</option>
-                                                                                <option>India</option>
-                                                                                <option>Japan</option>
-                                                                                <option>China</option>
-                                                                                <option>Brazil</option>
-                                                                                <option>Norway</option>
-                                                                                <option>Canada</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="address">Address</label>
-                                                                            <input type="text" class="form-control mb-3" id="address" placeholder="Address" value="New York" >
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="location">Location</label>
-                                                                            <input type="text" class="form-control mb-3" id="location" placeholder="Location">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="phone">Phone</label>
-                                                                            <input type="text" class="form-control mb-3" id="phone" placeholder="Write your phone number here" value="+1 (530) 555-12121">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="email">Email</label>
-                                                                            <input type="text" class="form-control mb-3" id="email" placeholder="Write your email here" value="Jimmy@gmail.com">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="website1">Website</label>
-                                                                            <input type="text" class="form-control mb-3" id="website1" placeholder="Enter URL">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-12 mt-1">
-                                                                        <div class="form-check">
-                                                                            <input class="form-check-input" type="checkbox" value="" id="customCheck1">
-                                                                            <label class="form-check-label" for="customCheck1">Make this my default address</label>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-12 mt-4">
-                                                                        <label for="tag" class="form-label">Category</label>
-                                                                        <label><button class="btn btn-secondary">Edit</button></label>
-                                                                        <input id="tag" name='tag' value='tag1, tag2 autofocus'>
-                                                                    </div>
-
-                                                                    <div class="col-12 mt-4">
-                                                                        <label for="member2" class="form-label">Member</label>
-                                                                        <textarea id="member2"></textarea>
-                                                                    </div>
-                                                                    <div class="col-md-12 mt-1">
-                                                                        <div class="form-group text-end">
-                                                                            <button class="btn btn-primary">Save</button>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="col-md-12 mt-4">
+                                            <div class="form-group text-end">
+                                                <button class="btn-submit btn btn-primary">Save</button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
-
             </div>
 
             <!--  BEGIN FOOTER  -->
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">DesignReset</a>, All rights reserved.</p>
+                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">Qubick</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
@@ -1124,56 +1039,130 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="{{ url('src/plugins/src/global/vendors.min.js') }}"></script>
     <script src="{{ url('src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ url('src/plugins/src/waves/waves.min.js') }}"></script>
     <script src="{{ url('layouts/vertical-light-menu/app.js') }}"></script>
+    <script src="{{ url('src/plugins/src/highlight/highlight.pack.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-    <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-    <script src="{{ url('src/plugins/src/filepond/filepond.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/notification/snackbar/snackbar.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/sweetalerts2/sweetalerts2.min.js') }}"></script>
-    <script src="{{ url('src/assets/js/users/account-settings.js') }}"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="../src/assets/js/scrollspyNav.js"></script>
+    <script src="../src/plugins/src/filepond/filepond.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginFileValidateType.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImagePreview.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageCrop.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageResize.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageTransform.min.js"></script>
+    <script src="../src/plugins/src/filepond/filepondPluginFileValidateSize.min.js"></script>
+    <script src="../src/plugins/src/filepond/custom-filepond.js"></script>
 
-    <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
-    <script src="{{ url('src/plugins/src/tagify/tagify.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/tagify/custom-tagify.js') }}"></script>
-    <!--  END CUSTOM SCRIPTS FILE  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-
-    <script src="{{ url('src/assets/js/scrollspyNav.js') }}"></script>
-
-    <script src="{{ url('src/plugins/src/editors/markdown/simplemde.min.js') }}"></script>
-    <script src="{{ url('src/plugins/src/editors/markdown/custom-markdown.js') }}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
 
     <script>
-        // The DOM element you wish to replace with Tagify
-        var input = document.querySelector('input[name=tag]');
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        const imageGallery = document.querySelector('input[name="project-preview"]');
+        const proposal = document.querySelector('input[name="proposal"]');
+        const thumbnail = document.querySelector('input[name="thumbnail"]');
 
-        // initialize Tagify on the above input node reference
-        new Tagify(input)
+        const pondImageGallery = FilePond.create(imageGallery,{
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
+        });
+        pondImageGallery.setOptions({
+            maxFiles: 15,
+            required: true,
+            acceptedFileTypes: ['image/jpeg','image/jpg','image/png']
+        });
+        const pondProposal = FilePond.create(proposal,{
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
+        });
+        const pondThumbnail = FilePond.create(thumbnail,{
+            labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
+        });
 
-        // Autosaving
-        new SimpleMDE({
-            element: document.getElementById("member2"),
-            spellChecker: false,
-            autosave: {
-                enabled: true,
-                unique_id: "member2",
-            },
+    </script>
+    <script>
+        let arrayImageGallery = [];
+        let tempData;
+        $(".btn-submit").click(function(e){
+
+            e.preventDefault();
+
+            let data = new FormData();
+            // Append data
+            if(pondProposal.getFiles()[0]){
+                data.append('proposal',pondProposal.getFiles()[0].file);
+            }
+            if(pondThumbnail.getFiles()[0]){
+                data.append('thumbnail',pondThumbnail.getFiles()[0].file);
+            }
+            let fileName = [];
+            if(pondImageGallery.getFiles()){
+                tempData = pondImageGallery.getFiles();
+                for (let i = 0; i < tempData.length; i++) {
+                    data.append('imageGallery'+i,tempData[i].file);
+                    fileName.push(tempData[i].file.name);
+                }
+            }
+            console.log(pondImageGallery.getFiles());
+            data.append('_token','{{ csrf_token() }}');
+            data.append('count',tempData.length);
+            data.append('youtube',$("input[name=youtube]").val());
+            data.append('listFileName',fileName);
+
+            $.ajax({
+                url:"{{ route('ajaxUploadDocumentProject.post') }}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                data: data,
+                success:function(data){
+                    console.log(data);
+                    if(data.status == 200){
+                        swal({
+                            title: "Success",
+                            text: "Data saved",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: false
+                            },
+                            function(isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                    }else{
+                        swal("Fail", data.message, "warning");
+                    }
+                },
+                error: function(xhr, textStatus, error) {
+                    swal(textStatus, error, "warning");
+                }
+            });
         });
     </script>
-    <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+        pondImageGallery.addFiles(
+            @if (count($data['imageGallery']) > 0)
+                @foreach ($data['imageGallery'] as $image)
+                    '{{$image->url_document}}',
+                @endforeach
+            @endif
+        );
+        @if ($data['thumbnail'] != "")
+        pondThumbnail.addFile('{{$data['thumbnail']->url_document}}');
+        @endif
+        @if ($data['proposal'] != "")
+            pondProposal.addFile('{{$data['proposal']->url_document}}');
+        @endif
+    </script>
 </body>
 </html>

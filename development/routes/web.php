@@ -18,9 +18,8 @@ use App\Http\Controllers\TeamController;
 |
 */
 
-Route::get('/', function () {
-    return view('base-html');
-});
+
+Route::get('/', [NewsController::class, 'showPublic']);
 Route::get('/admin/period/create', function () {
     return view('admin.setting-period');
 });
@@ -82,6 +81,8 @@ Route::post('/student/profile/edit', [TeamController::class, 'studentEditTeamPro
 Route::get('/student/category/list/{id}', [TeamController::class, 'studentCategoryList']);
 Route::post('/student/category/add', [TeamController::class, 'studentCategoryAdd'])->name('ajaxAddTeamCategory.post');
 Route::post('/student/category/delete', [TeamController::class, 'studentCategoryDelete'])->name('ajaxDeleteTeamCategory.post');
+Route::get('/student/documents', [TeamController::class, 'studentDocument']);
+Route::post('/student/documents', [TeamController::class, 'studentDocumentUpload'])->name('ajaxUploadDocumentProject.post');
 
 
 
@@ -94,8 +95,6 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
-
+//Public
 Route::get('public-home', [NewsController::class, 'showPublic']);
-Route::get('exhibition', function () {
-    return view('public.exhibition');
-});
+Route::get('/exhibition', [TeamController::class, 'exhibition']);
