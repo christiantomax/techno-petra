@@ -101,7 +101,7 @@
                     @if ($collection->thumbnail)
                         {{$collection->thumbnail}}
                     @else
-                        {{url('/files/logo-petra.webp')}}
+                        {{url('/internal/logo-ukp.jpg')}}
                     @endif
                 " alt="techno-petra-{{strtolower(str_replace(" ","-",$collection->name))}}">
                 </div>
