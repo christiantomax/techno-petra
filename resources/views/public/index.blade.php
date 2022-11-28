@@ -27,6 +27,12 @@
 
     <link href="../src/assets/css/dark/scrollspyNav.css" rel="stylesheet" type="text/css" />
     <link href="../src/assets/css/dark/components/carousel.css" rel="stylesheet" type="text/css" />
+
+    <link href="{{ url('src/assets/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/assets/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!--  END CUSTOM STYLE FILE  -->
 
 <!-- BEGIN CSS -->
@@ -48,51 +54,10 @@
 </script>
 <!-- CONTENT -->
 <div class="row layout-top-spacing">
-    <div class="col-lg-6 col-md-12">
-        <div class="container sticky-lg-top" style="max-width: 928px;margin-top: 5rem;top: 6rem">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 p-0">
-                    <div id="style1" class="carousel slide style-custom-1 " data-bs-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-bs-target="#style1" data-bs-slide-to="0" class="active"></li>
-                            <li data-bs-target="#style1" data-bs-slide-to="1"></li>
-                            <li data-bs-target="#style1" data-bs-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="3000">
-                                <img class="d-block w-100 slide-image" src="../src/assets/img/1.jpeg" alt="First slide">
-                                <div class="carousel-caption">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </div>
-                            </div>
-                            <div class="carousel-item" data-bs-interval="3000">
-                                <img class="d-block w-100 slide-image" src="../src/assets/img/3.jpeg" alt="Second slide">
-                                <div class="carousel-caption">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </div>
-                            </div>
-                            <div class="carousel-item" data-bs-interval="3000">
-                                <img class="d-block w-100 slide-image" src="../src/assets/img/2.jpg" alt="Third slide">
-                                <div class="carousel-caption">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </div>
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#style1" role="button" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#style1" role="button" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-lg-6 col-md-12">
+    @include('public.modal')
+
+    <div class="col-lg-12 col-md-12">
         <div class="widget-content widget-content-area ecommerce-create-section" style="background: none; border: none">
             <div class="row">
                 <div class="col-md-12">
@@ -186,6 +151,8 @@
 
 
 <script src="../src/assets/js/scrollspyNav.js"></script>
+
+@include('public.login-check')
 <!-- END PAGE LEVEL SCRIPTS -->
 
 

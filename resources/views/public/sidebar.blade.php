@@ -3,12 +3,12 @@
     <div class="navbar-nav theme-brand flex-row  text-center">
         <div class="nav-logo">
             <div class="nav-item theme-logo">
-                <a href="/public-home">
-                    <img src="/assets/page-image/page-icon.png"  alt="logo">
+                <a href="/">
+                    <img src="{{url('/internal/logo-side-bar.png')}}"  alt="logo">
                 </a>
             </div>
             <div class="nav-item theme-text">
-                <a href="/public-home" class="nav-link"> Techno </a>
+                <a href="/" class="nav-link"> Techno </a>
             </div>
         </div>
 
@@ -22,7 +22,7 @@
 
     <ul class="list-unstyled menu-categories" id="accordionExample">
         <li class="menu <?= ($current_page == '') ? 'active' : '' ?>">
-            <a href="/public-home" aria-expanded="false" class="dropdown-toggle">
+            <a href="/" aria-expanded="false" class="dropdown-toggle">
                 <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                     <span>Home</span>
@@ -39,74 +39,84 @@
             </a>
         </li>
 
-        {{-- <li class="menu <?= ($current_page == 'aa') ? 'active' : '' ?>">
-            <a href="/public-home" aria-expanded="false" class="dropdown-toggle">
-                <div class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
-                    <span>Home</span>
-                </div>
-            </a>
-        </li> --}}
+        @if (Session::get('role') == 1)
+
+            <li class="menu <?= ($current_page == '| Admin') ? 'active' : '' ?>">
+                <a href="#admin" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                        <span>Admin</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="admin" data-bs-parent="#accordionExample">
+                    <li>
+                        <a href="/admin/category/list"> List Category </a>
+                    </li>
+                    <li>
+                        <a href="/admin/category/create"> Create Category </a>
+                    </li>
+                    <li>
+                        <a href="/admin/news/list"> List News </a>
+                    </li>
+                    <li>
+                        <a href="/admin/news/create"> Create News </a>
+                    </li>
+                    <li>
+                        <a href="/admin/period/list"> List Period </a>
+                    </li>
+                    <li>
+                        <a href="/admin/period/create"> Create Period </a>
+                    </li>
+                    <li>
+                        <a href="/admin/team/list"> List Team Leader </a>
+                    </li>
+                    <li>
+                        <a href="/admin/team/create"> Create Team Leader </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
+        @if (Session::get('role') == 2)
+            <li class="menu <?= ($current_page == '| Student') ? 'active' : '' ?>">
+                <a href="#student" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                        <span>Student</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="student" data-bs-parent="#accordionExample">
+                    <li>
+                        <a href="/student/profile"> Profile </a>
+                    </li>
+                    <li>
+                        <a href="/student/category/list"> Category List </a>
+                    </li>
+                    <li>
+                        <a href="/student/documents"> Upload Document </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
 
         <li class="menu">
-            <a href="#admin" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#" aria-expanded="false" class="dropdown-toggle" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                 <div class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-                    <span>Admin</span>
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    @if (Session::get('role'))
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        <span>Logout</span>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                        <span>Login</span>
+                    @endif
                 </div>
             </a>
-            <ul class="collapse submenu list-unstyled" id="admin" data-bs-parent="#accordionExample">
-                <li>
-                    <a href="/admin/category/list"> List Category </a>
-                </li>
-                <li>
-                    <a href="/admin/category/create"> Create Category </a>
-                </li>
-                <li>
-                    <a href="/admin/news/list"> List News </a>
-                </li>
-                <li>
-                    <a href="/admin/news/create"> Create News </a>
-                </li>
-                <li>
-                    <a href="/admin/period/list"> List Period </a>
-                </li>
-                <li>
-                    <a href="/admin/period/create"> Create Period </a>
-                </li>
-                <li>
-                    <a href="/admin/team/list"> List Team Leader </a>
-                </li>
-                <li>
-                    <a href="/admin/team/create"> Create Team Leader </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu">
-            <a href="#student" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <div class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-                    <span>Student</span>
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-            </a>
-            <ul class="collapse submenu list-unstyled" id="student" data-bs-parent="#accordionExample">
-                <li>
-                    <a href="/student/profile/1"> Profile </a>
-                </li>
-                <li>
-                    <a href="/student/category/list/1"> Category List </a>
-                </li>
-                <li>
-                    <a href="/student/documents"> Upload Document </a>
-                </li>
-            </ul>
         </li>
     </ul>
 </nav>
