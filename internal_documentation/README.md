@@ -16,10 +16,10 @@ Technopreneurship Universitas Kristen Petra
 - showcase techno berdasarkan tahun dan semester
 
 ** Role **
-    > - Admin
-    > - Dosen
-    > - Mahasiswa
-    > - Public
+    > - Admin - 1
+    > - Team Leader - 2
+    > - Mahasiswa - 3
+    > - Public - 4
 
 ** Administrasi **
     > - [ERD](https://app.creately.com/d/6eRtdrrCn37/edit)

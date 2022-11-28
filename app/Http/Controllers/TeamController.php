@@ -507,7 +507,7 @@ class TeamController extends Controller
                 $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->imageGallery .= $collectionsDocument[$i]->url_document.", ";
             }
         }
-
+        Session::put('url', '/exhibition');
         return View::make('public.exhibition')->with('collections', $collections);
     }
 
@@ -536,6 +536,8 @@ class TeamController extends Controller
         }else{
             return View::make('errors.404');
         }
+
+        Session::put('url', '/exhibition/'.$request->slug);
 
 
         $dictionary_key = array();

@@ -18,7 +18,6 @@ use App\Http\Controllers\TeamController;
 |
 */
 
-
 Route::group(['middleware' => ['levelAdmin']],function(){
     // Admin Period
     Route::get('/admin/period/list', [PeriodController::class, 'index'])->name('period.list');
@@ -68,6 +67,8 @@ Route::group(['middleware' => ['levelStudent']],function(){
 //Auth
 Route::post('/login', [AuthController::class, 'customLogin'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'customLogout'])->name('logout.post');
+Route::get('/auth/redirect', [AuthController::class, 'redirectToProvider']);
+Route::get('/auth/callback', [AuthController::class, 'handleProviderCallback']);
 
 //Public
 Route::get('/exhibition', [TeamController::class, 'exhibition']);

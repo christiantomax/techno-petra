@@ -26,6 +26,7 @@ class NewsController extends Controller
                     // ->where('end_date', '<=', $currentDate)
                     ->orderBy('start_date', 'DESC')
                     ->get();
+        Session::put('url', '/');
         return view('public.index')->with('news', $news);
     }
 

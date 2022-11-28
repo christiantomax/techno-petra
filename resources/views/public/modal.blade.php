@@ -29,16 +29,18 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="email-login">Email address</label>
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="email-login" class="m-0">Email address</label>
+                                        <small id="emailHelp" class="form-text text-muted m-0">input email with @john</small>
                                         <input type="email" class="form-control" id="email-login" name="email-login" aria-describedby="emailHelp" placeholder="Enter email" required>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mt-4">
                                         <label for="password-login">Password</label>
                                         <input type="password" class="form-control" id="password-login" name="password-login" placeholder="Password" required>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer d-flex justify-content-between">
+                                    <a class="btn btn-danger" href="{{ '/auth/redirect'}}">google</a>
                                     <button type="submit" class="btn btn-primary btn-login">Login</button>
                                 </div>
                             @endif

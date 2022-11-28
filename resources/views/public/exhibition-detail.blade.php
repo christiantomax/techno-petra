@@ -95,7 +95,7 @@
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Exhibition</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Team Name</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{$collections[0]->name}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -205,7 +205,11 @@
                                                 <div class="row">
 
                                                     <div class="col-xxl-12 col-xl-12 col-sm-12 mb-sm-12 mb-3">
-                                                        <button class="btn btn-primary w-100 btn-lg"><span class="btn-text-inner">Vote</span></button>
+                                                        <button class="btn btn-primary w-100 btn-lg"
+                                                        @if (! Session::get('role'))
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+                                                        @endif
+                                                        ><span class="btn-text-inner" >Vote</span></button>
                                                     </div>
 
                                                 </div>

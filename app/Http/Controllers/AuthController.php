@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Redirect;
 use Hash;
 use Session;
 use App\Models\User;
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -142,5 +145,21 @@ class AuthController extends Controller
             "status" => "200",
             "message" => "success"
         ];
+    }
+
+    public function redirectToProvider(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleProviderCallback(Request $request){
+        try {
+            $user_google    = Socialite::driver('google')->user();
+            Session::put('email', $user_google->getEmail());
+            Session::put('role', 4);
+            Session::put('id', $user_google->getId());
+            return Redirect::to(Session::get('url'));
+        } catch (Exception $ex) {
+            return View::make('errors.404');
+        }
     }
 }
