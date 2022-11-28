@@ -16,40 +16,40 @@ class AuthController extends Controller
         $password = $request->data_post['password'];
         $attempt = Auth::attempt(['email' => $email, 'password' => $password]);
 
-        if ($attempt) {
-            $checkUser = User::select('teams.id', 'users.role', 'users.email')
-            ->join('teams', 'teams.id_user', '=', 'users.id')
-            ->where('users.email', $email)
-            ->get();
-            if(isset($checkUser[0])){
-                Session::put('email',$checkUser[0]->email);
-                Session::put('role',$checkUser[0]->role);
-                Session::put('id',$checkUser[0]->id);
-            }else{
-                $checkUser = User::select('role', 'email')
-                ->where('email', $email)
-                ->get();
-                if(isset($checkUser[0])){
-                    Session::put('email',$checkUser[0]->email);
-                    Session::put('role',$checkUser[0]->role);
-                    Session::put('id', 0);
-                }else{
-                    return [
-                        "status" => "403",
-                        "message" => "Not Allowed"
-                    ];
-                }
-            }
-        }else{
-            return [
-                "status" => "403",
-                "message" => "Not Allowed"
-            ];
-        }
-        return [
-            "status" => "200",
-            "message" => "success"
-        ];
+        // if ($attempt) {
+        //     $checkUser = User::select('teams.id', 'users.role', 'users.email')
+        //     ->join('teams', 'teams.id_user', '=', 'users.id')
+        //     ->where('users.email', $email)
+        //     ->get();
+        //     if(isset($checkUser[0])){
+        //         Session::put('email',$checkUser[0]->email);
+        //         Session::put('role',$checkUser[0]->role);
+        //         Session::put('id',$checkUser[0]->id);
+        //     }else{
+        //         $checkUser = User::select('role', 'email')
+        //         ->where('email', $email)
+        //         ->get();
+        //         if(isset($checkUser[0])){
+        //             Session::put('email',$checkUser[0]->email);
+        //             Session::put('role',$checkUser[0]->role);
+        //             Session::put('id', 0);
+        //         }else{
+        //             return [
+        //                 "status" => "403",
+        //                 "message" => "Not Allowed"
+        //             ];
+        //         }
+        //     }
+        // }else{
+        //     return [
+        //         "status" => "403",
+        //         "message" => "Not Allowed"
+        //     ];
+        // }
+        // return [
+        //     "status" => "200",
+        //     "message" => "success"
+        // ];
 
 
         // ===============================
