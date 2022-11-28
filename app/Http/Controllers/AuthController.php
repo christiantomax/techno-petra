@@ -53,41 +53,42 @@ class AuthController extends Controller
 
 
         // ===============================
-        $tmp=explode("@", $request->data_post['email']);
-        $user=$tmp[0];
-        $domain=$tmp[1];//john.petra.ac.id
+        if( strpos($request->data_post['email'], '@' )){
+            $tmp=explode("@", $request->data_post['email']);
+            $user=$tmp[0];
+            $domain=$tmp[1];//john.petra.ac.id
 
 
-        $imap = false;
-        $timeout = 15;
+            $imap = false;
+            $timeout = 15;
 
-        $fp = fsockopen($domain, $port = 110, $errno, $errstr, $timeout);
-        $errstr = fgets($fp);
-        if(substr($errstr, 0, 1) == '+') {
-            fputs($fp, "USER ".$user."\n");
+            $fp = fsockopen($domain, $port = 110, $errno, $errstr, $timeout);
             $errstr = fgets($fp);
             if(substr($errstr, 0, 1) == '+') {
-                fputs($fp, "PASS ".$request->data_post['password']."\n");
+                fputs($fp, "USER ".$user."\n");
                 $errstr = fgets($fp);
                 if(substr($errstr, 0, 1) == '+') {
-                    $imap = true;
+                    fputs($fp, "PASS ".$request->data_post['password']."\n");
+                    $errstr = fgets($fp);
+                    if(substr($errstr, 0, 1) == '+') {
+                        $imap = true;
+                    }
                 }
             }
-        }
 
-
-        if($imap){
-            $checkUser = Team::where('teams.nrp_leader', $user)
-            ->where('teams.is_active', 1)
-            ->get();
-            if(isset($checkUser[0])){
-                Session::put('email',$checkUser[0]->email);
-                Session::put('role',$checkUser[0]->role);
-                Session::put('id',$checkUser[0]->id);
-            }else{
-                Session::put('email', $request->data_post['email']);
-                Session::put('role', 3);
-                Session::put('id', 0);
+            if($imap){
+                $checkUser = Team::where('teams.nrp_leader', $user)
+                ->where('teams.is_active', 1)
+                ->get();
+                if(isset($checkUser[0])){
+                    Session::put('email',$checkUser[0]->email);
+                    Session::put('role',$checkUser[0]->role);
+                    Session::put('id',$checkUser[0]->id);
+                }else{
+                    Session::put('email', $request->data_post['email']);
+                    Session::put('role', 3);
+                    Session::put('id', 0);
+                }
             }
         }else{
             if ($attempt) {
