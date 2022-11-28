@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('id_team');
-            $table->string('auth_token');
+            $table->bigInteger('auth_token');
             $table->integer('email');
-            $table->string('nrp');
             $table->timestamps();
             $table->softDeletes();
         });

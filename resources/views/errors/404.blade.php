@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url('/internal/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href={{url('/internal/logo-ukp.jpg')}}>
-    <title>Error | CORK - Multipurpose Bootstrap Dashboard Template </title>
+    <title>Error | Something went wrong</title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
     <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
@@ -51,8 +51,9 @@
         <div class="row">
             <div class="col-md-4 mr-auto mt-5 text-md-left text-center">
                 <a href="index.html" class="ml-md-5">
-                    <img alt="image-404" src="../src/assets/img/logo.svg" class="dark-element theme-logo">
-                    <img alt="image-404" src="../src/assets/img/logo2.svg" class="light-element theme-logo">
+                    <img alt="image-logo" src="{{url('/internal/logo-side-bar1.png')}}" class="dark-element theme-logo">
+                    <img alt="image-logo" src="{{url('/internal/logo-side-bar1.png')}}" class="light-element theme-logo">
+                    <img alt="image-text" src="{{url('/internal/text-universitas-petra.png')}}">
                 </a>
             </div>
         </div>
@@ -63,7 +64,7 @@
             <p class="mini-text">Ooops!</p>
             <p class="error-text mb-5 mt-1">The page you requested was not found!</p>
             <img src="../src/assets/img/error.svg" alt="cork-admin-404" class="error-img">
-            <a href="index.html" class="btn btn-dark mt-5">Go Back</a>
+            <a href="/" class="btn btn-dark mt-5">Go Back</a>
         </div>
     </div>
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
