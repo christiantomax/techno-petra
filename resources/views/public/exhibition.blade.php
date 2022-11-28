@@ -12,8 +12,14 @@
     <link href="../src/assets/css/dark/elements/custom-pagination.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../src/assets/css/dark/apps/blog-post.css">
 
+    <link href="{{ url('src/assets/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('src/assets/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/light/editors/quill/quill.snow.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('src/plugins/css/dark/editors/quill/quill.snow.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!--  END CUSTOM STYLE FILE  -->
 
 <!-- BEGIN CSS -->
@@ -65,6 +71,7 @@
 </div>
 
 <div class="row layout-top-spacing">
+    @include('public.modal')
     <div class="col-lg-3 col-md-3 col-sm-3 mb-4">
         <input id="t-text" type="text" name="txt" placeholder="Search" class="form-control" required="">
     </div>
@@ -95,7 +102,13 @@
     <div class="row">
         @foreach ($collections as $collection)
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-4">
-            <a class="card style-6 card-exhibition" href="./app-ecommerce-product.html">
+            <a class="card style-6 card-exhibition"
+            @if ($collection->slug != null)
+                href="/exhibition/{{$collection->slug}}"
+            @else
+                href="/exhibition/{{$collection->id}}"
+            @endif
+            >
                 <div class="image-card-exhibition">
                     <img src="
                     @if ($collection->thumbnail)
@@ -161,5 +174,6 @@
 
     console.log(quillGetHTML(JSON.parse({"ops":[{"insert":"asdf\n"}]})));
 </script>
+@include('public.login-check')
 
 @include('public.footer')

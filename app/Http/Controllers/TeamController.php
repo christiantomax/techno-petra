@@ -113,7 +113,7 @@ class TeamController extends Controller
     public function studentTeamProfile(Request $request){
         $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
         ->join('periods', 'teams.id_period', '=', 'periods.id')
-        ->where('teams.id', $request->id)
+        ->where('teams.id', Session::get('id'))
         ->orderBy('id_period', 'DESC')
         ->orderBy('name')
         ->get();
@@ -129,7 +129,7 @@ class TeamController extends Controller
         }
         $collectionsTeamCategory = TeamCategory::select('team_categories.id_team', 'categories.name')
         ->join('categories', 'team_categories.id_category', '=', 'categories.id')
-        ->where('team_categories.id_team', $request->id)
+        ->where('team_categories.id_team', Session::get('id'))
         ->orderBy('team_categories.id_team', 'DESC')
         ->orderBy('categories.name')
         ->get();
@@ -144,7 +144,9 @@ class TeamController extends Controller
     public function studentEditTeamProfile(Request $request){
         $data = Team::where('id', '=', $request->data_post['id'])
         ->count();
-        if ($data == 1){
+        $checkSlug = Team::where('slug', '=', $request->data_post['slug'])
+        ->count();
+        if ($data == 1 && $checkSlug == 0){
             try {
                 $period = Team::find($request->data_post['id'])
                 ->update([
@@ -163,7 +165,13 @@ class TeamController extends Controller
                 "status" => "200",
                 "message" => "success"
             ];
-        }else{
+        }else if($checkSlug != 0){
+            return [
+                "status" => "403",
+                "message" => "slug already taken with another team"
+            ];
+        }
+        else{
             return [
                 "status" => "403",
                 "message" => "there something wrong, please contact admin"
@@ -178,7 +186,7 @@ class TeamController extends Controller
     public function studentCategoryList(Request $request){
         $collections = TeamCategory::select('team_categories.id', 'categories.name', 'team_categories.id_team')
         ->join('categories', 'team_categories.id_category', '=', 'categories.id')
-        ->where('team_categories.id_team', $request->id)
+        ->where('team_categories.id_team', Session::get('id'))
         ->where('categories.is_active', 1)
         ->where('team_categories.deleted_at', NULL)
         ->orderBy('team_categories.id_team', 'DESC')
@@ -189,7 +197,7 @@ class TeamController extends Controller
         ->leftjoin('team_categories', function($join){
             $join->on('team_categories.id_category', '=', 'categories.id');
         })
-        ->where('team_categories.id_team', '=', $request->id)
+        ->where('team_categories.id_team', '=', Session::get('id'))
         ->where('categories.is_active', 1)
         ->orderBy('categories.name')
         ->distinct('categories.id')
@@ -204,7 +212,7 @@ class TeamController extends Controller
         $data = [
             'collections' => $collections,
             'categories' => $categories,
-            'id' => $request->id
+            'id' => Session::get('id')
         ];
 
         return View::make('student.setting-category-list')->with('collections', $data);
@@ -212,7 +220,7 @@ class TeamController extends Controller
 
     public function studentCategoryDelete(Request $request){
         try {
-            $period = TeamCategory::find($request->data_post['id'])
+            $period = TeamCategory::find(Session::get('id'))
             ->delete();
         } catch(\Illuminate\Database\QueryException $ex){
             return [
@@ -235,13 +243,13 @@ class TeamController extends Controller
         for ($i = 0; $i < count($temp); $i++)  {
             $countData = TeamCategory::select('team_categories.id')
             ->join('categories', 'team_categories.id_category', '=', 'categories.id')
-            ->where('team_categories.id_team', $request->data_post['id'])
+            ->where('team_categories.id_team', Session::get('id'))
             ->where('categories.id', $temp[$i])
             ->count();
             if ($countData == 0){
                 try {
                     $period = TeamCategory::create([
-                        "id_team" => $request->data_post['id'],
+                        "id_team" => Session::get('id'),
                         'id_category' => $temp[$i]
                     ]);
                 } catch(\Illuminate\Database\QueryException $ex){
@@ -256,7 +264,7 @@ class TeamController extends Controller
     }
 
     public function studentDocument(){
-        $collections = TeamDocument::where('id_team', 1)
+        $collections = TeamDocument::where('id_team', Session::get('id'))
         ->where('deleted_at', null)
         ->where('is_active', 1)
         ->orderBy('id_team_require_documents', 'ASC')
@@ -266,6 +274,7 @@ class TeamController extends Controller
         $youtube = "";
         $proposal = "";
         $thumbnail = "";
+        $livePreview = "";
         $imageGallery = [];
         for ($x = 0; $x < count($collections); $x++) {
             if($collections[$x]->id_team_require_documents == 1){
@@ -274,15 +283,18 @@ class TeamController extends Controller
                 $thumbnail = $collections[$x];
             }else if($collections[$x]->id_team_require_documents == 3){
                 $proposal = $collections[$x];
-            }else{
+            }else if($collections[$x]->id_team_require_documents == 4){
                 array_push($imageGallery, $collections[$x]);
+            }else if($collections[$x]->id_team_require_documents == 5){
+                $livePreview = $collections[$x];
             }
         }
         $data = [
             'youtube' => $youtube,
             'proposal' => $proposal,
             'thumbnail' => $thumbnail,
-            'imageGallery' => $imageGallery
+            'livePreview' => $livePreview,
+            'imageGallery' => $imageGallery,
         ];
         return View::make('student.mahasiswa-upload-documents')->with('data', $data);
     }
@@ -290,11 +302,12 @@ class TeamController extends Controller
     public function studentDocumentUpload(Request $request){
         $validatePdf = ['application/pdf'];
         $validateImage = ['image/jpeg','image/jpg','image/png'];
-        $teamId = 1;
+        $teamId = Session::get('id');
         $documentYoutubeId = 1;
         $documentThumbnailId = 2;
         $documentPorposalId = 3;
         $documentImageGalleryId = 4;
+        $documentLivePreviewId = 5;
         $response = [
             "status" => "200",
             "message" => "success"
@@ -323,6 +336,33 @@ class TeamController extends Controller
                 ->where('id_team_require_documents', $documentYoutubeId)
                 ->where('name', 'youtube')
                 ->update(['url_document' => $request->youtube]);
+            } catch(\Illuminate\Database\QueryException $ex){
+                array_push($response, $ex->getMessage().' | ');
+            }
+        }
+
+        $data = TeamDocument::where('id_team', $teamId)
+        ->where('id_team_require_documents', $documentLivePreviewId)
+        ->count();
+        if ($data == 0 && $request->livePreview != ""){
+            try {
+                $teamDocument = TeamDocument::create([
+                    "id_team" => $teamId,
+                    'id_team_require_documents' => $documentLivePreviewId,
+                    'name' => "link preview",
+                    'type' => "text",
+                    'sort' => 1,
+                    'url_document' => $request->livePreview
+                ]);
+            } catch(\Illuminate\Database\QueryException $ex){
+                array_push($response, $ex->getMessage().' | ');
+            }
+        }else{
+            try {
+                $period = TeamDocument::where('id_team', $teamId)
+                ->where('id_team_require_documents', $documentLivePreviewId)
+                ->where('name', 'link preview')
+                ->update(['url_document' => $request->livePreview]);
             } catch(\Illuminate\Database\QueryException $ex){
                 array_push($response, $ex->getMessage().' | ');
             }
@@ -367,7 +407,7 @@ class TeamController extends Controller
                 $this->deleteFile($dataCheck[0]->name, $dataCheck[0]->id);
             }
 
-            $check = $this->storeFile($request->file('proposal'), $validateImage, $teamId, $documentPorposalId, "file", $documentPorposalId,
+            $check = $this->storeFile($request->file('proposal'), $validatePdf, $teamId, $documentPorposalId, "file", $documentPorposalId,
             $request->file('proposal')->getSize());
             if($check["status"] == "403"){
                 array_push($response, 'Proposal file is not uploaded | ');
@@ -429,6 +469,7 @@ class TeamController extends Controller
     public function exhibition(){
         $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
         ->join('periods', 'teams.id_period', '=', 'periods.id')
+        ->where('teams.is_active', 1)
         ->orderBy('id_period', 'DESC')
         ->orderBy('id', 'DESC')
         ->orderBy('name')
@@ -439,17 +480,20 @@ class TeamController extends Controller
         }
         $collectionsTeamCategory = TeamCategory::select('team_categories.id_team', 'categories.name')
         ->join('categories', 'team_categories.id_category', '=', 'categories.id')
+        ->join('teams', 'teams.id', '=', 'team_categories.id_team')
+        ->where('teams.is_active', '=', 1)
         ->orderBy('team_categories.id_team', 'DESC')
         ->orderBy('categories.name')
         ->get();
         for ($i=0; $i < count($collectionsTeamCategory) ; $i++) {
             $collections[$dictionary_key[$collectionsTeamCategory[$i]->id_team]]->categories .= $collectionsTeamCategory[$i]->name.", ";
         }
-        $collectionsDocument = TeamDocument::where('deleted_at', null)
-        ->where('is_active', 1)
-        ->orderBy('id_team', 'ASC')
-        ->orderBy('id_team_require_documents', 'ASC')
-        ->orderBy('sort', 'ASC')
+        $collectionsDocument = TeamDocument::join('teams', 'teams.id', '=', 'team_documents.id_team')
+        ->where('teams.is_active', 1)
+        ->where('team_documents.deleted_at', null)
+        ->orderBy('team_documents.id_team', 'ASC')
+        ->orderBy('team_documents.id_team_require_documents', 'ASC')
+        ->orderBy('team_documents.sort', 'ASC')
         ->get();
 
         for ($i=0; $i < count($collectionsDocument) ; $i++) {
@@ -467,13 +511,32 @@ class TeamController extends Controller
         return View::make('public.exhibition')->with('collections', $collections);
     }
 
-    public function exhibitionDetail(){
-        $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
-        ->join('periods', 'teams.id_period', '=', 'periods.id')
-        ->orderBy('id_period', 'DESC')
-        ->orderBy('id', 'DESC')
-        ->orderBy('name')
+    public function exhibitionDetail(Request $request){
+        $checkBySlug = Team::where('slug', $request->slug)
         ->get();
+        $checkById = Team::where('id', $request->slug)
+        ->get();
+        $collections = "";
+        if(isset($checkBySlug[0])){
+            $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
+            ->join('periods', 'teams.id_period', '=', 'periods.id')
+            ->where('teams.slug', $request->slug)
+            ->orderBy('id_period', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->orderBy('name')
+            ->get();
+        }else if(isset($checkById[0])){
+            $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
+            ->join('periods', 'teams.id_period', '=', 'periods.id')
+            ->where('teams.id', $request->slug)
+            ->orderBy('id_period', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->orderBy('name')
+            ->get();
+        }else{
+            return View::make('errors.404');
+        }
+
 
         $dictionary_key = array();
         for ($i=0; $i < count($collections) ; $i++) {
@@ -481,14 +544,17 @@ class TeamController extends Controller
         }
         $collectionsTeamCategory = TeamCategory::select('team_categories.id_team', 'categories.name')
         ->join('categories', 'team_categories.id_category', '=', 'categories.id')
-        ->orderBy('team_categories.id_team', 'DESC')
+        ->where('team_categories.id_team', $collections[0]->id)
         ->orderBy('categories.name')
         ->get();
         for ($i=0; $i < count($collectionsTeamCategory) ; $i++) {
             $collections[$dictionary_key[$collectionsTeamCategory[$i]->id_team]]->categories .= $collectionsTeamCategory[$i]->name.", ";
         }
+
+
         $collectionsDocument = TeamDocument::where('deleted_at', null)
         ->where('is_active', 1)
+        ->where('id_team', $collections[0]->id)
         ->orderBy('id_team', 'ASC')
         ->orderBy('id_team_require_documents', 'ASC')
         ->orderBy('sort', 'ASC')
@@ -503,10 +569,11 @@ class TeamController extends Controller
                 $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->proposal = $collectionsDocument[$i]->url_document;
             }else if($collectionsDocument[$i]->id_team_require_documents == 4){
                 $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->imageGallery .= $collectionsDocument[$i]->url_document.", ";
+            }else if($collectionsDocument[$i]->id_team_require_documents == 5){
+                $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->livePreview .= $collectionsDocument[$i]->url_document.", ";
             }
         }
-
-        return View::make('public.exhibition')->with('collections', $collections);
+        return View::make('public.exhibition-detail')->with('collections', $collections);
     }
 
     private function deleteFile($fileName, $id){
