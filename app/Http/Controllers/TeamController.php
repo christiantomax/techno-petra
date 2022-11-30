@@ -10,6 +10,7 @@ use Session;
 use File;
 use App\Models\Period;
 use App\Models\Team;
+use App\Models\Vote;
 use App\Models\TeamCategory;
 use App\Models\Category;
 use App\Models\TeamDocument;
@@ -653,5 +654,35 @@ class TeamController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public function voteNow(Request $request){
+        if(Session::get('id')){
+            $dataCount = Vote::where('id_team', $request->id)
+                ->where('email', Session::get('email'))
+                ->count();
+            if($dataCount == 0){
+                $voteNow = Vote::create([
+                    "id_team" => $request->id,
+                    'email' => Session::get('email'),
+                    'role' => Session::get('role'),
+                    ]
+                );
+            }else{
+                return [
+                    "status" => "403",
+                    "message" => 'You\'re already vote this team'
+                ];
+            }
+        }else{
+            return [
+                "status" => "403",
+                "message" => 'Please login first'
+            ];
+        }
+        return [
+            "status" => "200",
+            "message" => "success"
+        ];
     }
 }

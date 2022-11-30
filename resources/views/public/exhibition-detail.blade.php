@@ -208,6 +208,8 @@
                                                         <button class="btn btn-primary w-100 btn-lg"
                                                         @if (! Session::get('role'))
                                                             data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+                                                        @else
+                                                            onclick="voteNow({{$collections[0]->id}})"
                                                         @endif
                                                         ><span class="btn-text-inner" >Vote</span></button>
                                                     </div>
@@ -399,6 +401,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- END PAGE LEVEL PLUGINS -->
+    <script>
+        function voteNow(idTeam) {
+            $.ajax({
+                type:'POST',
+                url:"{{ route('voteNow.post') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "id": "{{$collections[0]->id}}"
+                },
+                success:function(data){
+                    if(data.status == 200){
+                        swal({
+                            title: "Success",
+                            text: "Data saved",
+                            type: "success",
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: false
+                            },
+                            function(isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                    }else{
+                        swal("Info", data.message, "warning");
+                    }
+                },
+                error: function(xhr, textStatus, error) {
+                    swal(textStatus, error, "warning");
+                }
+            });
+        }
+    </script>
     <script>
         $('#btn-share-project').on('click', () => {
             if (navigator.share) {
