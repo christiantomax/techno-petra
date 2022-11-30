@@ -1081,7 +1081,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-11-29T15:18:16+00:00"
+            "time": "2022-11-30T15:15:24+00:00
         },
         {
             "name": "laravel/sanctum",

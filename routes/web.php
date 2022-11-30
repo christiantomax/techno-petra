@@ -64,6 +64,8 @@ Route::group(['middleware' => ['levelStudent']],function(){
     Route::post('/student/category/delete', [TeamController::class, 'studentCategoryDelete'])->name('ajaxDeleteTeamCategory.post');
 });
 
+Route::post('/vote', [TeamController::class, 'voteNow'])->name('voteNow.post');
+
 //Auth
 Route::post('/login', [AuthController::class, 'customLogin'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'customLogout'])->name('logout.post');

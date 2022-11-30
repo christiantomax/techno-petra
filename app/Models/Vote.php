@@ -10,7 +10,7 @@ class Vote extends Model
     use HasFactory;
     protected $fillable = [
         'id_team',
-        'auth_token',
+        'role',
         'email',
         'nrp',
     ];
