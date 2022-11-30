@@ -160,12 +160,12 @@ class AuthController extends Controller
     }
 
     public function handleProviderCallback(Request $request){
-        Session::put('email', 'agustinusmax678@gmail.com');
-        Session::put('role', '4');
-        Session::put('id', '1234567890');
-        return Redirect::to('/');
         try {
-            // $user_google = Socialite::driver('google')->user();
+            $user_google = Socialite::driver('google')->user();
+            Session::put('email', $user_google->getEmail());
+            Session::put('role', 4);
+            Session::put('id', $user_google->getId());
+            return Redirect::to(Session::get('url'));
         } catch (Exception $ex) {
             return View::make('errors.404');
         }
