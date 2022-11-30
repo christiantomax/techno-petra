@@ -153,7 +153,7 @@ class AuthController extends Controller
 
     public function handleProviderCallback(Request $request){
         try {
-            $user_google    = Socialite::driver('google')->user();
+            $user_google = Socialite::driver('google')->user();
             Session::put('email', $user_google->getEmail());
             Session::put('role', 4);
             Session::put('id', $user_google->getId());
