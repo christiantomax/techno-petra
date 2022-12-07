@@ -79,22 +79,15 @@
     <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4 ms-auto">
         <select class="select form-select" aria-label="Default select example">
             <option selected="">All Category</option>
-            <option value="3">Apperal</option>
-            <option value="1">Electronics</option>
-            <option value="2">Clothing</option>
-            <option value="3">Accessories</option>
-            <option value="3">Organic</option>
         </select>
     </div>
 
     <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4">
         <select class="select form-select" aria-label="Default select example">
             <option selected="">Sort By</option>
-            <option value="1">Low to High Price</option>
-            <option value="2">Most Viewed</option>
-            <option value="3">Hight to Low Price</option>
-            <option value="3">On Sale</option>
-            <option value="3">Newest</option>
+            <option value="1">Newest</option>
+            <option value="2">Oldest</option>
+            <option value="3">Most Viewed</option>
         </select>
     </div>
 </div>
