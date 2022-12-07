@@ -148,14 +148,6 @@ class AuthController extends Controller
     }
 
     public function redirectToProvider(){
-        try {
-            Session::put('email', 'agustinusmax678@gmail.com');
-            Session::put('role', '4');
-            Session::put('id', '1234567890');
-        } catch (Exception $ex) {
-            return View::make('errors.404');
-        }
-        return Redirect::to('/');
         return Socialite::driver('google')->redirect();
     }
 
