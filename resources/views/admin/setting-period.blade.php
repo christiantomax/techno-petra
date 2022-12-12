@@ -261,6 +261,7 @@
                     }
                 },
                 error: function(xhr, textStatus, error) {
+                    console.log("masuk");
                     swal(textStatus, error, "warning");
                 }
             });

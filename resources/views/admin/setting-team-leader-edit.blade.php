@@ -81,7 +81,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Admin</a></li>
                                 <li class="breadcrumb-item"><a href="#">Setting</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Period</li>
+                                <li class="breadcrumb-item active" aria-current="page">Team</li>
                             </ol>
                         </nav>
                     </div>
