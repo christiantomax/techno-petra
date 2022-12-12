@@ -25,7 +25,7 @@ Route::group(['middleware' => ['levelAdmin']],function(){
     Route::get('/admin/period/create', function () {
         return view('admin.setting-period');
     });
-    Route::post('/admin/period/create', [PeriodController::class, 'createPost'])->name('ajaxPeriodCreate.post');
+    Route::post('/admin/period/create', [PeriodController::class, 'create'])->name('ajaxPeriodCreate.post');
     Route::post('/admin/period/edit', [PeriodController::class, 'editPost'])->name('ajaxPeriodEdit.post');
 
     // Admin Category
