@@ -43,6 +43,7 @@ Route::group(['middleware' => ['levelAdmin']],function(){
     Route::post('/admin/team/create', [TeamController::class, 'createPost'])->name('ajaxTeamCreate.post');
     Route::get('/admin/team/edit/{id}', [TeamController::class, 'edit']);
     Route::post('/admin/team/edit', [TeamController::class, 'editPost'])->name('ajaxTeamEdit.post');
+    Route::get('/admin/team/votes/{id}', [TeamController::class, 'teamVotesDetail']);
 
     // Admin News
     Route::get('/admin/news/list', [NewsController::class, 'index'])->name('news.list');

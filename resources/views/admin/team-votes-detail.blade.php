@@ -71,6 +71,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Setting</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Team</li>
+                                <li class="breadcrumb-item active" aria-current="page">Votes</li>
                             </ol>
                         </nav>
                     </div>
@@ -83,71 +84,22 @@
                                 <table id="zero-config" class="table table-striped dt-table-hover" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Period</th>
-                                            <th>Name Team</th>
-                                            <th>NRP Leader</th>
-                                            <th>Member</th>
-                                            <th>Categories</th>
-                                            <th>Total Votes</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($collections as $collection)
                                             <tr>
-                                                <td>{{ $collection->year }} |
-                                                @if ($collection->semester == 0)
-                                                    Genap
-                                                @else
-                                                    Ganjil
-                                                @endif
-                                                </td>
-                                                <td>{{ $collection->name }}</td>
-                                                <td>{{ $collection->nrp_leader }}</td>
-                                                <td>{{ $collection->member }}</td>
-                                                <td>
-                                                    @if ($collection->categories)
-                                                        {{rtrim($collection->categories, ", ")}}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{  url('admin/team/votes') }}/{{$collection->id}}">
-                                                        <button class="btn btn-secondary">
-                                                            @if ($collection->total)
-                                                                {{ $collection->total }}
-                                                            @else
-                                                                0
-                                                            @endif
-                                                        </button>
-                                                    </a>
-                                                </td>
-                                                @if ($collection->is_active == 1)
-                                                    <td><button class="btn btn-primary" disabled>Active</button></td>
-                                                @else
-                                                    <td><button class="btn btn-secondary" disabled>Inactive</button></td>
-                                                @endif
-                                                <td>
-                                                    <a href="{{  url('admin/team/edit') }}/{{$collection->id}}">
-                                                        <button class="btn btn-warning">Edit</button>
-                                                    </a>
-                                                </td>
+                                                <td>{{ $collection->email }}</td>
+                                                <td>{{ $collection->role }}</td>
                                             </tr>
                                         @endforeach
-
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Period</th>
-                                            <th>Name Team</th>
-                                            <th>NRP Leader</th>
-                                            <th>Member</th>
-                                            <th>Categories</th>
-                                            <th>Total Votes</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
                                     </tfoot>
                                 </table>
                             </div>

@@ -15,6 +15,7 @@ use App\Models\TeamCategory;
 use App\Models\Category;
 use App\Models\TeamDocument;
 use App\Models\TeamRequireDocument;
+use DB;
 
 class TeamController extends Controller
 {
@@ -36,7 +37,26 @@ class TeamController extends Controller
         for ($i=0; $i < count($collectionsTeamCategory) ; $i++) {
             $collections[$dictionary_key[$collectionsTeamCategory[$i]->id_team]]->categories .= $collectionsTeamCategory[$i]->name.", ";
         }
+        $collectionsTeamCategory = Vote::select(DB::raw('count(*) as total'), 'id_team')
+        ->groupBy('id_team')
+        ->get();
+        for ($i=0; $i < count($collectionsTeamCategory) ; $i++) {
+            $collections[$dictionary_key[$collectionsTeamCategory[$i]->id_team]]->total = $collectionsTeamCategory[$i]->total;
+        }
         return View::make('admin.setting-team-leader-list')->with('collections', $collections);
+    }
+
+    public function teamVotesDetail(Request $request){
+        $collections = Vote::select("email", \DB::raw('(CASE
+            WHEN role = "1" THEN "Admin"
+            WHEN role = "2" THEN "Team Leader"
+            WHEN role = "3" THEN "Mahasiswa"
+            WHEN role = "4" THEN "Public"
+            ELSE "Unknown"
+            END) AS role'))
+        ->where('id_team', $request->id)
+        ->get();
+        return View::make('admin.team-votes-detail')->with('collections', $collections);
     }
 
     public function create(){
