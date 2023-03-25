@@ -72,30 +72,42 @@
 
 <div class="row layout-top-spacing">
     @include('public.modal')
-    <div class="col-lg-3 col-md-3 col-sm-3 mb-4">
+    <div class="col-lg-5 col-md-3 col-sm-3 mb-4">
         <input id="t-text" type="text" name="txt" placeholder="Search" class="form-control" required="">
     </div>
 
     <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4 ms-auto">
-        <select class="select form-select" aria-label="Default select example">
-            <option selected="">All Category</option>
+        <select class="select form-select" id="categories" aria-label="Default select example" onchange="filterByCategories(this)">
+            <option selected value="0">All Category</option>
+            @foreach ($data['categories'] as $collection)
+                <option value="{{$collection->id}}">{{$collection->name}}</option>
+            @endforeach
         </select>
     </div>
 
     <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4">
         <select class="select form-select" aria-label="Default select example">
-            <option selected="">Sort By</option>
+            <option selected value="0">All Period</option>
+            @foreach ($data['period'] as $collection)
+                <option value="{{$collection->id}}">{{$collection->year}} {{($collection->semester % 2 == 0) ? "Genap" : "Ganjil"}}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4">
+        <select class="select form-select" aria-label="Default select example">
+            <option selected value="0">Sort By</option>
             <option value="1">Newest</option>
             <option value="2">Oldest</option>
-            <option value="3">Most Viewed</option>
+            <option value="3">Most Voted</option>
         </select>
     </div>
 </div>
 
     <div class="row">
-        @foreach ($collections as $collection)
+        @foreach ($data['collections'] as $collection)
         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-4">
-            <a class="card style-6 card-exhibition"
+            <a class="card style-6 card-exhibition h-100"
             @if ($collection->slug != null)
                 href="/exhibition/{{$collection->slug}}"
             @else
@@ -111,9 +123,9 @@
                     @endif
                 " alt="techno-petra-{{strtolower(str_replace(" ","-",$collection->name))}}">
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-12 mb-5">
+                <div class="card-footer h-100">
+                    <div class="row d-flex flex-column justify-content-between h-100">
+                        <div class="col-12 mb-3">
                             <b class="fs-2 lh-sm card-title">{{$collection->name}}</b>
                         </div>
 
@@ -130,14 +142,14 @@
                             <small class="breadcrumb breadcrumb-item fs-6 lh-sm">
                                 <?php
                                     for ($i=0; $i < count($temp) ; $i++) {
-                                        echo '<button type="button" class="btn btn-primary btn-sm me-1 text-white">'.$temp[$i].'</button>';
+                                        echo '<button type="button" class="btn btn-primary btn-sm me-1 mt-1 text-white">'.$temp[$i].'</button>';
                                     }
                                 ?>
                             </small>
                         </div>
 
                         <div class="d-grid col-12 mx-auto">
-                            <button class="btn btn-outline-primary mb-2 _effect--ripple waves-effect waves-light">VOTE !</button>
+                            <button class="btn btn-outline-primary mb-2 _effect--ripple waves-effect waves-light">View</button>
                         </div>
                     </div>
                 </div>
@@ -146,26 +158,15 @@
         @endforeach
     </div>
 
-
-
-
-
-
-
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ url('src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
 <script src="{{ url('src/plugins/src/glightbox/glightbox.min.js') }}"></script>
-<script src="{{ url('src/plugins/src/editors/quill/quill.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
 <script>
-    function quillGetHTML(inputDelta) {
-        var tempCont = document.createElement("div");
-        (new Quill(tempCont)).setContents(inputDelta);
-        return tempCont.getElementsByClassName("ql-editor")[0].innerHTML;
+    function filterByCategories(current){
+        console.log(current);
     }
-
-    console.log(quillGetHTML(JSON.parse({"ops":[{"insert":"asdf\n"}]})));
 </script>
 @include('public.login-check')
 

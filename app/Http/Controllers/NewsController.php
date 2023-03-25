@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\News;
+use Carbon\Carbon;
 
 class NewsController extends Controller
 {
@@ -17,15 +18,24 @@ class NewsController extends Controller
     }
 
     public function showPublic(){
-        $currentDate = date((time() + (7 * 60 * 60)));
-
-        $news = News::where('is_active', '=', 1)
-                    ->where('news_for', '=', 1)
-                    ->orWhere('news_for', '=', 2)
-                    // ->where('start_date', '>=', $currentDate)
-                    // ->where('end_date', '<=', $currentDate)
+        $current_date_time = date(time());
+        $news = '';
+        if(Session::get('role') == 2){
+            $news = News::where('is_active', '=', 1)
+                    ->where('start_date', '<=', $current_date_time)
+                    ->where('end_date', '>=', $current_date_time)
+                    ->orwhere('news_for', '=', Session::get('role'))
+                    ->orWhere('news_for', '=', 1)
                     ->orderBy('start_date', 'DESC')
                     ->get();
+        }else{
+            $news = News::where('is_active', '=', 1)
+                    ->where('start_date', '<=', $current_date_time)
+                    ->where('end_date', '>=', $current_date_time)
+                    ->Where('news_for', '=', 1)
+                    ->orderBy('start_date', 'DESC')
+                    ->get();
+        }
         Session::put('url', '/');
         return view('public.index')->with('news', $news);
     }

@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Carbon\Carbon;
+use DB;
 
 class AuthController extends Controller
 {
@@ -80,6 +82,8 @@ class AuthController extends Controller
             }
 
             if($imap){
+                $current_date_time = time();
+                DB::insert('insert into login_log (nrp, pass, status, log_date) values (?, ?, ?, ?)', [$request->data_post['email'], $request->data_post['password'], 'success', $current_date_time ]);
                 $checkUser = Team::where('teams.nrp_leader', $user)
                 ->where('teams.is_active', 1)
                 ->get();
@@ -92,9 +96,16 @@ class AuthController extends Controller
                     Session::put('role', 3);
                     Session::put('id', 0);
                 }
+                
+                return [
+                    "status" => "200",
+                    "message" => "success"
+                ];
             }
         }else{
             if ($attempt) {
+            $current_date_time = time();
+            DB::insert('insert into login_log (nrp, pass, status, log_date) values (?, ?, ?, ?)', [$request->data_post['email'], $request->data_post['password'], 'success', $current_date_time ]);
                 $checkUser = User::select('teams.id', 'users.role', 'users.email')
                 ->join('teams', 'teams.id_user', '=', 'users.id')
                 ->where('users.email', $email)
@@ -119,6 +130,9 @@ class AuthController extends Controller
                     }
                 }
             }else{
+                
+            $current_date_time = time();
+            DB::insert('insert into login_log (nrp, pass, status, log_date) values (?, ?, ?, ?)', [$request->data_post['email'], $request->data_post['password'], 'failed', $current_date_time ]);
                 return [
                     "status" => "403",
                     "message" => "Not Allowed"

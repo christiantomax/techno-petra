@@ -39,7 +39,7 @@
             </a>
         </li>
 
-        {{-- @if (Session::get('role') == 1) --}}
+        @if (Session::get('role') == 1)
 
             <li class="menu <?= ($current_page == '| Admin') ? 'active' : '' ?>">
                 <a href="#admin" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -53,7 +53,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="admin" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="/admin/category/list"> List Category</a>
+                        <a href="/admin/category/list"> List Category </a>
                     </li>
                     <li>
                         <a href="/admin/category/create"> Create Category </a>
@@ -78,7 +78,7 @@
                     </li>
                 </ul>
             </li>
-        {{-- @endif --}}
+        @endif
 
         @if (Session::get('role') == 2)
             <li class="menu <?= ($current_page == '| Student') ? 'active' : '' ?>">

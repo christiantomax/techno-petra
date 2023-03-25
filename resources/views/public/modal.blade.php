@@ -38,10 +38,14 @@
                                         <label for="password-login">Password</label>
                                         <input type="password" class="form-control" id="password-login" name="password-login" placeholder="Password" required>
                                     </div>
+                                    
+                                    <button type="submit" class="btn btn-primary btn-login w-100 mt-3">Login</button>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between">
-                                    <a class="btn btn-danger" href="{{ '/auth/redirect'}}">google</a>
-                                    <button type="submit" class="btn btn-primary btn-login">Login</button>
+                                    <p class="text-center w-100">
+                                        <span>Or login as a public account</span>
+                                    </p>
+                                    <a class="btn btn-danger w-100 mt-3" href="{{ '/auth/redirect'}}">google</a>
                                 </div>
                             @endif
                     </form>

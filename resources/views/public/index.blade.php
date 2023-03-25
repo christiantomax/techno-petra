@@ -81,12 +81,12 @@
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <h5>{{ucwords($berita->title)}}</h5>
+                                                    <h5>{{$berita->title}}</h5>
                                                 </div>
                                             </div>
                                             <div class='accord_title_container'>
                                                  <div class="accord_date_text">
-                                                    <text>{{ gmdate("d F Y | H:i:s", $berita->start_date); }}</text>
+                                                    <text>{{ date('d M Y | H:i:s', $berita->start_date + (60*60*7)); }}</text>
                                                 </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                                                     <polyline points="6 9 12 15 18 9"></polyline>
