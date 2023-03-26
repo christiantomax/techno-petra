@@ -75,14 +75,28 @@ class ApiController extends Controller
             }
         }
 
+        $ids = [];
+        foreach ($collections as $item) {
+            $ids[] = $item['id'];
+        }
+
         $collectionsDocument = TeamDocument::join('teams', 'teams.id', '=', 'team_documents.id_team')
         ->where('teams.is_active', 1)
         ->whereNotNull('teams.name')
         ->where('team_documents.deleted_at', null)
+        ->whereIn('teams.id', $ids)
         ->orderBy('team_documents.id_team', 'ASC')
         ->orderBy('team_documents.id_team_require_documents', 'ASC')
         ->orderBy('team_documents.sort', 'ASC')
         ->get();
+
+
+        // return [
+        //     // "collections" => $collections,
+        //     // "dictionary_key" => $dictionary_key,
+        //     "ids" => $ids,
+        //     // "collectionsDocument" => $collectionsDocument,
+        // ];
 
         for ($i=0; $i < count($collectionsDocument) ; $i++) {
             if($collectionsDocument[$i]->id_team_require_documents == 1){
