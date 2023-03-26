@@ -76,7 +76,7 @@ Route::group(['middleware' => ['levelStudent']],function(){
 });
 
 Route::post('/vote', [TeamController::class, 'voteNow'])->name('voteNow.post');
-Route::get('/exhibition-data', [ApiController::class, 'publicEndpoint']);
+Route::get('/exhibition-data', [ApiController::class, 'publicEndpoint'])->name('exhibition.get');
 
 //Auth
 Route::post('/login', [AuthController::class, 'customLogin'])->name('login.post');

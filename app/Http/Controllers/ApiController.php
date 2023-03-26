@@ -19,18 +19,16 @@ class ApiController extends Controller
         $period = $request->input('period');
         $search = $request->input('search');
         $orderby = $request->input('orderby');
+        $limit = $request->input('limit');
+        $offset = $request->input('offset');
         $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
         ->join('periods', 'teams.id_period', '=', 'periods.id')
         ->where('teams.is_active', 1)
         ->whereNotNull('teams.name');
 
         if (isset($category)) {
-            $collections = TeamCategory::select('teams.*', 'periods.year', 'periods.semester')
-            ->join('teams', 'teams.id', '=', 'team_categories.id_team')
-            ->join('periods', 'teams.id_period', '=', 'periods.id')
-            ->where('team_categories.id_category', $category)
-            ->where('teams.is_active', 1)
-            ->whereNotNull('teams.name');
+            $collections = $collections->join('team_categories', 'teams.id', '=', 'team_categories.id_team')
+            ->where('team_categories.id_category', $category);
         }
         if (isset($period)) {
             $collections = $collections->where('periods.id', $period);
@@ -40,20 +38,21 @@ class ApiController extends Controller
         }
         if (isset($orderby)) {
             if($orderby == "-created"){
-                $collections = $collections->orderBy('created_at', 'DESC');
+                $collections = $collections->orderBy('teams.created_at', 'DESC');
             } else if ($orderby == "created") {
-                $collections = $collections->orderBy('created_at', 'ASC');
+                $collections = $collections->orderBy('teams.created_at', 'ASC');
             } else if ($orderby == "most_voted"){
-                $collections = Team::select('teams.id', 'teams.name', 'periods.year', 'periods.semester', DB::raw('count(*) as total_vote'))
-                ->join('periods', 'teams.id_period', '=', 'periods.id')
+                $collections = $collections->select('teams.id', 'teams.name', 'periods.year', 'periods.semester', DB::raw('count(*) as total_vote'))
                 ->join('votes', 'teams.id', '=', 'votes.id_team')
-                ->where('teams.is_active', 1)
-                ->whereNotNull('teams.name')
+                ->orderBy('total_vote', 'DESC')
                 ->groupBy('teams.id')
                 ->groupBy('teams.name')
                 ->groupBy('periods.year')
                 ->groupBy('periods.semester');
             }
+        }
+        if (isset($limit) && isset($offset)) {
+            $collections = $collections->offset($offset)->limit($limit);
         }
 
         $collections =  $collections->get();
@@ -96,17 +95,8 @@ class ApiController extends Controller
                 $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->imageGallery .= $collectionsDocument[$i]->url_document.", ";
             }
         }
-        $categories = Category::where('is_active', 1)
-        ->orderBy('name', 'ASC')
-        ->get();
-        $period = Period::where('is_active', 1)
-        ->orderBy('year', 'DESC')
-        ->orderBy('semester', 'DESC')
-        ->get();
         $data = [
             'collections' => $collections,
-            'categories' => $categories,
-            'period' => $period,
         ];
         return $data;
     }
