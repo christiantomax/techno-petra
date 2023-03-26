@@ -40,3 +40,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+/public/files/
+/storage/logs/
