@@ -166,6 +166,7 @@ class TeamController extends Controller
         $data = Team::where('id', '=', $request->data_post['id'])
         ->count();
         $checkSlug = Team::where('slug', '=', $request->data_post['slug'])
+        ->where('id', '!=', $request->data_post['id'])
         ->count();
         if ($data == 1 && $checkSlug == 0){
             try {
@@ -175,6 +176,7 @@ class TeamController extends Controller
                     'description' => $request->data_post['description'],
                     'member' => $request->data_post['member'],
                     'slug' => str_replace(" ", "-", $request->data_post['slug']),
+                    'technotype' => $request->data_post['technoType']
                 ]);
             } catch(\Illuminate\Database\QueryException $ex){
                 return [
@@ -210,7 +212,7 @@ class TeamController extends Controller
         ->where('team_categories.id_team', Session::get('id'))
         ->where('categories.is_active', 1)
         ->where('team_categories.deleted_at', NULL)
-        ->orderBy('team_categories.id_team', 'DESC')
+        ->orderBy('team_categories.id', 'DESC')
         ->orderBy('categories.name')
         ->get();
 
@@ -220,7 +222,7 @@ class TeamController extends Controller
         })
         ->where('team_categories.id_team', '=', Session::get('id'))
         ->where('categories.is_active', 1)
-        ->orderBy('categories.name')
+        ->orderBy('categories.id')
         ->distinct('categories.id')
         ->get();
 
@@ -488,9 +490,13 @@ class TeamController extends Controller
     }
 
     public function exhibition(){
+        //baik filter by CATEGORY, PERIODE param by id
+        //CATEGORY cek dulu multiple category di tabel team_categories, dari situ dapet semua id team distinct
+        //PERIODE langsung where id_periode nya
         $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
         ->join('periods', 'teams.id_period', '=', 'periods.id')
         ->where('teams.is_active', 1)
+        ->whereNotNull('teams.name')
         ->orderBy('id_period', 'DESC')
         ->orderBy('id', 'DESC')
         ->orderBy('name')
@@ -502,6 +508,7 @@ class TeamController extends Controller
         $collectionsTeamCategory = TeamCategory::select('team_categories.id_team', 'categories.name')
         ->join('categories', 'team_categories.id_category', '=', 'categories.id')
         ->join('teams', 'teams.id', '=', 'team_categories.id_team')
+        ->whereNotNull('teams.name')
         ->where('teams.is_active', '=', 1)
         ->orderBy('team_categories.id_team', 'DESC')
         ->orderBy('categories.name')
@@ -511,6 +518,7 @@ class TeamController extends Controller
         }
         $collectionsDocument = TeamDocument::join('teams', 'teams.id', '=', 'team_documents.id_team')
         ->where('teams.is_active', 1)
+        ->whereNotNull('teams.name')
         ->where('team_documents.deleted_at', null)
         ->orderBy('team_documents.id_team', 'ASC')
         ->orderBy('team_documents.id_team_require_documents', 'ASC')
@@ -528,8 +536,20 @@ class TeamController extends Controller
                 $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->imageGallery .= $collectionsDocument[$i]->url_document.", ";
             }
         }
+        $categories = Category::where('is_active', 1)
+        ->orderBy('name', 'ASC')
+        ->get();
+        $period = Period::where('is_active', 1)
+        ->orderBy('year', 'DESC')
+        ->orderBy('semester', 'DESC')
+        ->get();
         Session::put('url', '/exhibition');
-        return View::make('public.exhibition')->with('collections', $collections);
+        $data = [
+            'collections' => $collections,
+            'categories' => $categories,
+            'period' => $period,
+            ];
+        return View::make('public.exhibition')->with('data', $data);
     }
 
     public function exhibitionDetail(Request $request){
@@ -596,6 +616,28 @@ class TeamController extends Controller
                 $collections[$dictionary_key[$collectionsDocument[$i]->id_team]]->livePreview .= $collectionsDocument[$i]->url_document.", ";
             }
         }
+
+        $totalVotes = Vote::select(DB::raw('count(*) as total', 'id_team'))
+        ->where('id_team', $collections[0]->id)
+        ->groupBy('id_team')
+        ->get();
+        if(isset($totalVotes[0]->total)){
+            $collections[0]->total = $totalVotes[0]->total;
+        }else{
+            $collections[0]->total = 0;
+        }
+
+        $alreadyVote = 0;
+        if(Session::get('email')){
+            $dataCount = Vote::where('id_team', $collections[0]->id)
+                ->where('email', Session::get('email'))
+                ->get();
+            if(isset($dataCount[0]->id)){
+                $alreadyVote = 1;
+            }
+        }
+
+        $collections[0]->isVoted = $alreadyVote;
         return View::make('public.exhibition-detail')->with('collections', $collections);
     }
 
@@ -677,7 +719,7 @@ class TeamController extends Controller
     }
 
     public function voteNow(Request $request){
-        if(Session::get('id')){
+        if(Session::get('role')){
             $dataCount = Vote::where('id_team', $request->id)
                 ->where('email', Session::get('email'))
                 ->count();

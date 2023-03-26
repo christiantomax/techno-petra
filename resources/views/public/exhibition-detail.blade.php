@@ -7,7 +7,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta name="description" content="{{$collections[0]->name}}">
+    <meta name="keywords" content="techno, technopreneurship, universitas petra, faculty of industrial technology, {{$collections[0]->name}}">
+    <meta name="author" content="Qubick Studio | Technopreneurship Petra">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url('/internal/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href={{url('/internal/logo-ukp.jpg')}}>
@@ -94,7 +96,7 @@
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Exhibition</a></li>
+                                <li class="breadcrumb-item"><a href="/exhibition">Exhibition</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{$collections[0]->name}}</li>
                             </ol>
                         </nav>
@@ -109,7 +111,7 @@
                             <div class="widget-content widget-content-area br-8">
 
                                 <div class="row justify-content-center">
-                                    <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-7 col-sm-9 col-12 pe-3">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-7 col-sm-9 col-12 pe-3">
                                         <!-- Swiper -->
                                         <div id="main-slider" class="splide">
                                             <div class="splide__track">
@@ -157,7 +159,7 @@
 
                                     </div>
 
-                                    <div class="col-xxl-4 col-xl-5 col-lg-12 col-md-12 col-12 mt-xl-0 mt-5 align-self-center">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-12 mt-xl-0 mt-5 align-self-center">
 
                                         <div class="product-details-content">
 
@@ -172,14 +174,18 @@
 
                                             <div class="d-flex justify-content-between">
                                                 <h3 class="product-title mb-0">{{$collections[0]->name}}</h3>
-                                                <button class="btn btn-light-success btn-icon btn-rounded" id="btn-share-project">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                                
+                                                <div>
+                                                    <button class="btn btn-light-success btn-icon btn-rounded" id="btn-share-project"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                                                 </button>
+                                                </div>
                                             </div>
 
-                                            <div class="review mb-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bookmark"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-                                                <span class="rating-score">0 Votes</span>
+                                            <div class="review product-title mb-2 mt-3 d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bookmark"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                                                    <span class="rating-score">{{$collections[0]->total}} Votes</span>
+                                                </div>
                                             </div>
 
                                             <hr class="mb-4">
@@ -188,30 +194,40 @@
                                                 $temp = rtrim($collections[0]->categories, ", ");
                                                 $temp = explode(", ", $temp);
                                                 for ($i=0; $i < count($temp) ; $i++) {
-                                                    echo '<button type="button" class="btn btn-primary btn-sm me-1 text-white">'.$temp[$i].'</button>';
+                                                    echo '<button type="button" class="btn btn-primary btn-sm me-1 mt-1 text-white">'.$temp[$i].'</button>';
                                                 }
                                             ?>
 
                                             <hr class="mb-4">
                                             <h5><strong>Description</strong></h5>
                                             <hr/>
-                                            <div class="mb-5" id="quill-description"></div>
+                                            <div class="mb-3" id="quill-description"></div>
 
 
-                                            <hr class="mb-5 mt-4">
+                                            <hr class="mb-3 mt-2">
 
                                             <div class="action-button text-center">
 
                                                 <div class="row">
 
                                                     <div class="col-xxl-12 col-xl-12 col-sm-12 mb-sm-12 mb-3">
-                                                        <button class="btn btn-primary w-100 btn-lg"
-                                                        @if (! Session::get('role'))
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
-                                                        @else
-                                                            onclick="voteNow({{$collections[0]->id}})"
-                                                        @endif
-                                                        ><span class="btn-text-inner" >Vote</span></button>
+                                                        <?php //<button class="btn btn-primary w-100 btn-lg"
+                                                        
+                                                        // <!--@if ($collections[0]->isVoted == 1)-->
+                                                        // <!--    disabled-->
+                                                        // <!--@endif-->
+                                                        // <!--@if (! Session::get('role'))-->
+                                                        // <!--    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"-->
+                                                        // <!--@else-->
+                                                        // <!--    onclick="voteNow({{$collections[0]->id}})"-->
+                                                        // <!--@endif-->
+                                                        // <!--><span class="btn-text-inner" >-->
+                                                        // <!--@if ($collections[0]->isVoted == 1)-->
+                                                        // <!--    You Have Voted This Team-->
+                                                        // <!--@else-->
+                                                        // <!--    Vote-->
+                                                        // <!--@endif-->
+                                                        //</span></button>?>
                                                     </div>
 
                                                 </div>
@@ -302,11 +318,8 @@
                                                         <div class="card-body">
                                                             <div class="row mx-2">
                                                                 <div class="col-md-12">
-                                                                    <?php
-                                                                        $temp = explode("v=", $collections[0]->youtube);
-                                                                    ?>
                                                                     <iframe style="width: 100%; height: 65vh;"
-                                                                        src="https://www.youtube.com/embed/<?= $temp[count($temp)-1]?>">
+                                                                        src="https://www.youtube.com/embed/<?= $collections[0]->youtube?>">
                                                                     </iframe>
                                                                     <a href="{{$collections[0]->youtube}}" target="_blank">
                                                                         <button type="button" class="btn btn-primary btn-sm me-1 text-white d-sm-flex d-lg-none">Direct Video to Youtube</button>
@@ -365,7 +378,7 @@
             <!--  BEGIN FOOTER  -->
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://designreset.com/cork-admin/">Qubick</a>, All rights reserved.</p>
+                    <p class="">Copyright © <span class="dynamic-year">2022</span> <a target="_blank" href="https://qubick.id">Qubick</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
@@ -445,7 +458,8 @@
                 .then(() => console.log('Successful share'))
                 .catch((error) => console.log('Error sharing', error));
             } else {
-                console.log('Share not supported on this browser, do it the old way.');
+                  navigator.clipboard.writeText(window.location.href);
+                  alert("Copied the link share ");
             }
         });
 

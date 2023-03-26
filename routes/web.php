@@ -6,6 +6,7 @@ use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,15 @@ use App\Http\Controllers\TeamController;
 */
 
 Route::group(['middleware' => ['levelAdmin']],function(){
+
+    Route::get('/student/documents', [TeamController::class, 'studentDocument']);
+    Route::post('/student/documents', [TeamController::class, 'studentDocumentUpload'])->name('ajaxUploadDocumentProject.post');
+    Route::get('/student/profile/', [TeamController::class, 'studentTeamProfile']);
+    Route::post('/student/profile/edit', [TeamController::class, 'studentEditTeamProfile'])->name('ajaxTeamProfileEdit.post');
+    Route::get('/student/category/list', [TeamController::class, 'studentCategoryList'])->name('studentListCategory');;
+    Route::post('/student/category/add', [TeamController::class, 'studentCategoryAdd'])->name('ajaxAddTeamCategory.post');
+    Route::post('/student/category/delete', [TeamController::class, 'studentCategoryDelete'])->name('ajaxDeleteTeamCategory.post');
+
     // Admin Period
     Route::get('/admin/period/list', [PeriodController::class, 'index'])->name('period.list');
     Route::get('/admin/period/edit/{id}', [PeriodController::class, 'edit']);
@@ -66,6 +76,7 @@ Route::group(['middleware' => ['levelStudent']],function(){
 });
 
 Route::post('/vote', [TeamController::class, 'voteNow'])->name('voteNow.post');
+Route::get('/exhibition-data', [ApiController::class, 'publicEndpoint'])->name('exhibition.get');
 
 //Auth
 Route::post('/login', [AuthController::class, 'customLogin'])->name('login.post');
