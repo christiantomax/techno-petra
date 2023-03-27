@@ -18,6 +18,7 @@ use App\Http\Controllers\ApiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/student/documents/test', [TeamController::class, 'studentDocumentA']);
 
 Route::group(['middleware' => ['levelAdmin']],function(){
 
