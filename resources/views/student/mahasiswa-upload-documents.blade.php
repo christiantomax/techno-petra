@@ -104,6 +104,8 @@
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div class="widget-content widget-content-area ecommerce-create-section">
                                 <form>
+                                    <input type="hidden" id="start_date_submission" value={{$data['start_date_submission']}} />
+                                    <input type="hidden" id="end_date_submission" value={{$data['end_date_submission']}} />
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label for="youtube">
@@ -179,7 +181,7 @@
 
                                         <div class="col-md-12 mt-4">
                                             <div class="form-group text-end">
-                                                <button class="btn-submit btn btn-primary">Save</button>
+                                                <button class="btn-submit btn btn-primary" id="btn-submit">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -261,6 +263,25 @@
     <script>
         let arrayImageGallery = [];
         let tempData;
+        // Convert the epoch time to a JavaScript Date object
+        var periodStart = $("#start_date_submission").val();
+        var periodStart = new Date(periodStart * 1000);
+        var periodEnd = $("#end_date_submission").val();
+        var periodEnd = new Date(periodEnd * 1000);
+
+        // Get the current time in the user's browser
+        var currentDate = new Date();
+        console.log("periodStart", periodStart)
+        console.log("periodEnd", periodEnd)
+        console.log("currentDate", currentDate)
+        console.log("check", periodStart < currentDate && periodEnd > currentDate)
+
+        // Compare the two times
+        if (periodStart < currentDate && periodEnd > currentDate) {
+            document.getElementById("btn-submit").style.display = "block";
+        } else {
+            document.getElementById("btn-submit").style.display = "none";
+        }
         $(".btn-submit").click(function(e){
 
             e.preventDefault();
@@ -283,10 +304,12 @@
             }
             console.log(pondImageGallery.getFiles());
             data.append('_token','{{ csrf_token() }}');
-            data.append('count',tempData.length);
-            data.append('youtube',$("input[name=youtube]").val());
-            data.append('livePreview',$("input[name=live-preview]").val());
-            data.append('listFileName',fileName);
+            if(periodStart < currentDate && periodEnd > currentDate){
+                data.append('count',tempData.length);
+                data.append('youtube',$("input[name=youtube]").val());
+                data.append('livePreview',$("input[name=live-preview]").val());
+                data.append('listFileName',fileName);
+            }
 
             $.ajax({
                 url:"{{ route('ajaxUploadDocumentProject.post') }}",

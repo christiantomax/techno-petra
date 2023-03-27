@@ -287,11 +287,15 @@ class TeamController extends Controller
     }
 
     public function studentDocument(){
-        $collections = TeamDocument::where('id_team', Session::get('id'))
-        ->where('deleted_at', null)
-        ->where('is_active', 1)
-        ->orderBy('id_team_require_documents', 'ASC')
-        ->orderBy('sort', 'ASC')
+        $collections = TeamDocument::select('team_documents.*',
+        'periods.start_date_submission', 'periods.end_date_submission')
+        ->where('team_documents.id_team', Session::get('id'))
+        ->join('teams', 'teams.id', 'team_documents.id_team')
+        ->join('periods', 'teams.id_period', 'periods.id')
+        ->where('team_documents.deleted_at', null)
+        ->where('team_documents.is_active', 1)
+        ->orderBy('team_documents.id_team_require_documents', 'ASC')
+        ->orderBy('team_documents.sort', 'ASC')
         ->get();
 
         $youtube = "";
@@ -318,6 +322,8 @@ class TeamController extends Controller
             'thumbnail' => $thumbnail,
             'livePreview' => $livePreview,
             'imageGallery' => $imageGallery,
+            'start_date_submission' => $collections[0]->start_date_submission,
+            'end_date_submission' => $collections[0]->end_date_submission,
         ];
         return View::make('student.mahasiswa-upload-documents')->with('data', $data);
     }

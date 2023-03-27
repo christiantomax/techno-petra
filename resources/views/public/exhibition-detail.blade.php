@@ -174,7 +174,7 @@
 
                                             <div class="d-flex justify-content-between">
                                                 <h3 class="product-title mb-0">{{$collections[0]->name}}</h3>
-                                                
+
                                                 <div>
                                                     <button class="btn btn-light-success btn-icon btn-rounded" id="btn-share-project"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                                                 </button>
@@ -209,25 +209,25 @@
                                             <div class="action-button text-center">
 
                                                 <div class="row">
-
-                                                    <div class="col-xxl-12 col-xl-12 col-sm-12 mb-sm-12 mb-3">
-                                                        <?php //<button class="btn btn-primary w-100 btn-lg"
-                                                        
-                                                        // <!--@if ($collections[0]->isVoted == 1)-->
-                                                        // <!--    disabled-->
-                                                        // <!--@endif-->
-                                                        // <!--@if (! Session::get('role'))-->
-                                                        // <!--    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"-->
-                                                        // <!--@else-->
-                                                        // <!--    onclick="voteNow({{$collections[0]->id}})"-->
-                                                        // <!--@endif-->
-                                                        // <!--><span class="btn-text-inner" >-->
-                                                        // <!--@if ($collections[0]->isVoted == 1)-->
-                                                        // <!--    You Have Voted This Team-->
-                                                        // <!--@else-->
-                                                        // <!--    Vote-->
-                                                        // <!--@endif-->
-                                                        //</span></button>?>
+                                                    <div class="col-xxl-12 col-xl-12 col-sm-12 mb-sm-12 mb-3" id="btn-vote">
+                                                        <input type="hidden" id="start_date_vote" value={{$collections[0]->start_date_vote}} />
+                                                        <input type="hidden" id="end_date_vote" value={{$collections[0]->end_date_vote}} />
+                                                            <button class="btn btn-primary w-100 btn-lg"
+                                                                @if ($collections[0]->isVoted == 1)
+                                                                    disabled
+                                                                @endif
+                                                                @if (! Session::get('role'))
+                                                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+                                                                @else
+                                                                    onclick="voteNow({{$collections[0]->id}})"
+                                                                @endif
+                                                                ><span class="btn-text-inner" >
+                                                                @if ($collections[0]->isVoted == 1)
+                                                                    You Have Voted This Team
+                                                                @else
+                                                                    Vote
+                                                                @endif
+                                                            </span></button>
                                                     </div>
 
                                                 </div>
@@ -415,6 +415,22 @@
 
     <!-- END PAGE LEVEL PLUGINS -->
     <script>
+
+        // Convert the epoch time to a JavaScript Date object
+        var periodStart = $("#start_date_vote").val();
+        var periodStart = new Date(periodStart * 1000);
+        var periodEnd = $("#end_date_vote").val();
+        var periodEnd = new Date(periodEnd * 1000);
+
+        // Get the current time in the user's browser
+        var currentDate = new Date();
+
+        // Compare the two times
+        if (periodStart < currentDate && periodEnd > currentDate) {
+            document.getElementById("btn-vote").style.display = "block";
+        } else {
+            document.getElementById("btn-vote").style.display = "none";
+        }
         function voteNow(idTeam) {
             $.ajax({
                 type:'POST',
@@ -458,8 +474,8 @@
                 .then(() => console.log('Successful share'))
                 .catch((error) => console.log('Error sharing', error));
             } else {
-                  navigator.clipboard.writeText(window.location.href);
-                  alert("Copied the link share ");
+                navigator.clipboard.writeText(window.location.href);
+                alert("Copied the link share ");
             }
         });
 
