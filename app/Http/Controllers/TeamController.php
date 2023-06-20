@@ -75,6 +75,7 @@ class TeamController extends Controller
         $colections = json_decode($request->data_post["nrp"]);
         for($i = 0, $l = count($colections); $i < $l; ++$i) {
             $dataCount = Team::where('nrp_leader', $colections[$i]->value)
+                    ->where('id_period', $request->data_post["period"])
                     ->count();
             if ($dataCount == 0){
                 try {
