@@ -11,16 +11,16 @@
         // Convert the JSON string to a PHP associative array
         $dataDescription = json_decode($collections[0]->description, true);
 
-        // Access the 'ops' array and extract the first element
-        $firstElement = $dataDescription['ops'][0];
+        // Extract the "insert" values from the "ops" array
+        $description = '';
+        foreach ($dataDescription['ops'] as $op) {
+            if (isset($op['insert'])) {
+                $description .= $op['insert'];
+            }
+        }
 
-        // Extract the 'insert' value from the first element
-        $description = $firstElement['insert'];
-
-        // Remove &nbsp; from the string
-        $description = str_replace('&nbsp;', '', $description);
-        $description = str_replace("'", '', $description);
-        $description = str_replace('"', '', $description);
+        // Remove newline characters and extra spaces
+        $description = trim(preg_replace('/\s+/', ' ', $description));
     ?>
     <meta property="og:title" content="Techno | {{$collections[0]->name}}">
     <meta property="og:description" content="<?= $description; ?>">
