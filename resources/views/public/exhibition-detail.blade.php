@@ -7,13 +7,46 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="{{$collections[0]->name}}">
-    <meta name="keywords" content="techno, technopreneurship, universitas petra, faculty of industrial technology, {{$collections[0]->name}}">
+    <?php
+        // Convert the JSON string to a PHP associative array
+        $dataDescription = json_decode($collections[0]->description, true);
+
+        // Access the 'ops' array and extract the first element
+        $firstElement = $dataDescription['ops'][0];
+
+        // Extract the 'insert' value from the first element
+        $description = $firstElement['insert'];
+
+        // Remove &nbsp; from the string
+        $description = str_replace('&nbsp;', '', $description);
+        $description = str_replace("'", '', $description);
+        $description = str_replace('"', '', $description);
+    ?>
+    <meta property="og:title" content="Techno | {{$collections[0]->name}}">
+    <meta property="og:description" content="<?= $description; ?>">
+
+    @if (isset($collections[0]->thumbnail))
+    <meta property="og:image" content="{{$collections[0]->thumbnail}}">
+    @else
+    <meta property="og:image" content="{{url('/internal/favicon-32x32.png')}}">
+    @endif
+
+
+    @if (isset($collections[0]->slug))
+    <meta property="og:url" content="https://techno.petra.ac.id/exhibition/{{$collections[0]->slug}}">
+    @else
+    <meta property="og:url" content="https://techno.petra.ac.id/exhibition/{{$collections[0]->id}}">
+    @endif
+    <meta property="og:type" content="website">
+
+    <title>Techno | {{$collections[0]->name}}</title>
+    <meta name="description" content="<?= $description; ?>">
+    <meta name="keywords" content="techno, technopreneurship, universitas petra, faculty of industrial technology, {{rtrim($collections[0]->categories, ', ')}}">
     <meta name="author" content="Qubick Studio | Technopreneurship Petra">
+    <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url('/internal/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href={{url('/internal/logo-ukp.jpg')}}>
-    <title>Techno | {{$collections[0]->name}}</title>
     <link rel="icon" type="image/x-icon" href="{{ url('src/assets/img/favicon.ico') }}"/>
     <link href="{{ url('layouts/vertical-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('layouts/vertical-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
@@ -173,7 +206,7 @@
                                             </span>
 
                                             <div class="d-flex justify-content-between">
-                                                <h3 class="product-title mb-0">{{$collections[0]->name}}</h3>
+                                                <h1 class="product-title mb-0"><strong>{{$collections[0]->name}}</strong></h1>
 
                                                 <div>
                                                     <button class="btn btn-light-success btn-icon btn-rounded" id="btn-share-project"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>

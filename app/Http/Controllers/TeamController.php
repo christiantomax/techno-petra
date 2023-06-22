@@ -317,6 +317,12 @@ class TeamController extends Controller
                 $livePreview = $collections[$x];
             }
         }
+        if(count($collections) == 0){
+            $collections = Team::select('periods.start_date_submission', 'periods.end_date_submission')
+            ->where('teams.id', Session::get('id'))
+            ->join('periods', 'teams.id_period', 'periods.id')
+            ->get();
+        }
         $data = [
             'youtube' => $youtube,
             'proposal' => $proposal,
@@ -500,7 +506,7 @@ class TeamController extends Controller
         //baik filter by CATEGORY, PERIODE param by id
         //CATEGORY cek dulu multiple category di tabel team_categories, dari situ dapet semua id team distinct
         //PERIODE langsung where id_periode nya
-        $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
+        $collections = Team::select('teams.*', 'periods.year', 'periods.semester', 'periods.start_date_vote', 'periods.end_date_vote')
         ->join('periods', 'teams.id_period', '=', 'periods.id')
         ->where('teams.is_active', 1)
         ->whereNotNull('teams.name')
@@ -566,7 +572,7 @@ class TeamController extends Controller
         ->get();
         $collections = "";
         if(isset($checkBySlug[0])){
-            $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
+            $collections = Team::select('teams.*', 'periods.year', 'periods.semester', 'periods.start_date_vote', 'periods.end_date_vote')
             ->join('periods', 'teams.id_period', '=', 'periods.id')
             ->where('teams.slug', $request->slug)
             ->orderBy('id_period', 'DESC')
@@ -574,7 +580,7 @@ class TeamController extends Controller
             ->orderBy('name')
             ->get();
         }else if(isset($checkById[0])){
-            $collections = Team::select('teams.*', 'periods.year', 'periods.semester')
+            $collections = Team::select('teams.*', 'periods.year', 'periods.semester', 'periods.start_date_vote', 'periods.end_date_vote')
             ->join('periods', 'teams.id_period', '=', 'periods.id')
             ->where('teams.id', $request->slug)
             ->orderBy('id_period', 'DESC')
