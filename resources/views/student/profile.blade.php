@@ -160,7 +160,10 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="slug">Slug</label>
+                                            <label for="slug">Slug</label><br/>
+                                            <span>Slug is a <span class="text-danger"><b>last path url</b></span> access to show your detail project</span><br/>
+                                            <span>please double check your slug input by clicking the url beside</span><br/>
+                                            <span>example : <s>https://techno.petra.ac.id/exhibition/</s><span class="text-danger"><b>healty-lifeApps</b></span></span>
                                             <input type="text" class="form-control mb-3" id="slug" name="slug" placeholder="type slug" value="{{$collection->slug}}">
                                         </div>
                                     </div>
@@ -183,15 +186,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">     
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                                 <label for="slug">Techno</label>                <select class="techno-type form-select" id="techno-type" aria-label="Default select">
                                                         @if ($collection->technotype == 1)
-                                                            
+
                                               <option value="1" selected>Techno 1</option>
                                               <option value="2">Techno 2</option>
                                                         @else if($collection->technotype == 1)
-                                                            
+
                                               <option value="1">Techno 1</option>
                                               <option value="2" selected>Techno 2</option>
                                                         @endif
