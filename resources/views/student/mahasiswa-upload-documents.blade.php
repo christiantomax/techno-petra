@@ -116,7 +116,10 @@
                                             </label>
                                             <br>
                                             <span>
-                                                just enter code from youtube link
+                                                just enter <span class="text-danger"><b>only code</b></span> from youtube, double check your youtube code by clicking url slug on profile menu<br/>
+                                            </span>
+                                            <span>
+                                                example : <s>https://www.youtube.com/watch?v=</s><i><b class="text-danger">-u2xkeI-RFo</b></i><br/>
                                             </span>
                                             <input type="url" class="form-control mb-3" id="youtube" name="youtube" placeholder="Type link youtube project ..."
                                                 @if ($data['youtube'] != "")
